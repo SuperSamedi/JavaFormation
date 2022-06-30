@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 3rem;
+    margin: 2rem;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    font-weight: bold;
+    color: black;
+
+}
+
+nav > *{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 0 0.5rem;
+    text-align: center;
+}
+nav a:hover{
+    color:white;
+    background-color: black;
+}
+nav .navRemaining {
+    flex-grow: 1;
+    border-right: none;
+}
+nav .current{
+    border-bottom: none;
+}
+
+input[type=button] {
+    height: 1.5rem;
+    padding: 0.33rem 1rem;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.card {
+    width: 6.35cm;
+    height: 8.89cm;
+    background: url(/Exercise08-API/assets/images/cardBack.jpg);
+    background-size: cover;
+    border: none;
+    border-right: 1px solid rgba(255, 255, 224, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 224, 0.3);
+    border-radius: .9rem;
+    box-shadow: 2px 2px 5px black;
+    color:rgba(0, 0, 0, 0);
+    transition: all 0.1s ease;
+}
+
+.cards-display {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 2rem 0;
+}
+
+.glimpse {
+    font-weight: bold;
+}
+.glimpse:hover{
+    color: white;
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+}
+
+#search-bar {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    gap: 1rem;
+}
+
+#search-bar input[type=text] {
+    padding: 0.25rem;
+    flex-grow: 1;
+}
+
+#previewDisplay {
+    display:block;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
