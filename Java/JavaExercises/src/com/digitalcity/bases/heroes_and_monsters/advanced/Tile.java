@@ -1,6 +1,5 @@
 package com.digitalcity.bases.heroes_and_monsters.advanced;
 
-import interfaces.ITileContent;
 
 public class Tile {
     private ITileContent content;

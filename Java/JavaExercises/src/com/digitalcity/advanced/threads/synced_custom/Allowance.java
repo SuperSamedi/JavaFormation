@@ -5,10 +5,10 @@ package com.digitalcity.advanced.threads.synced_custom;
 public class Allowance extends Thread{
     private PiggyBank piggyBank;
     private int amount;
-    private int frequency; // in seconds
+    private float frequency; // in seconds
     private boolean running;
 
-    public Allowance(PiggyBank piggyBank, int amount, int frequency){
+    public Allowance(PiggyBank piggyBank, int amount, float frequency){
         this.piggyBank = piggyBank;
         this.amount = amount;
         this.frequency = frequency;
@@ -19,7 +19,7 @@ public class Allowance extends Thread{
     public void run() {
         try {
             while(running){
-                Thread.sleep(frequency * 1000l);
+                Thread.sleep((long)(frequency * 1000l));
                 piggyBank.addMoney(amount);
             }
         }
@@ -31,7 +31,7 @@ public class Allowance extends Thread{
     public void toggleAllowance() {
         running = !running;
 
-        if (running == false) {
+        if (!running) {
             System.out.println("Allowance has been stopped.");
             return;
         }
