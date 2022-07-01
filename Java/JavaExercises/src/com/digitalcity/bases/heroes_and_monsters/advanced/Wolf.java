@@ -1,6 +1,6 @@
 package com.digitalcity.bases.heroes_and_monsters.advanced;
 
-import interfaces.IPossessLeather;
+
 
 public class Wolf extends Monster implements IPossessLeather {
     private int leatherAmount;

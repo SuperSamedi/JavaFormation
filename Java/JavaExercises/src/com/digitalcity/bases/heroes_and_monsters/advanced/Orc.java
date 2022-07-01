@@ -1,6 +1,5 @@
 package com.digitalcity.bases.heroes_and_monsters.advanced;
 
-import interfaces.IPossessGold;
 
 public class Orc extends Monster implements IPossessGold {
     private final int strengthBonus = 1;
