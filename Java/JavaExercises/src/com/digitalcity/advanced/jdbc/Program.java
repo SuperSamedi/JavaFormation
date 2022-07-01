@@ -14,7 +14,7 @@ public class Program {
         SectionDAO sectionDAO = new SectionDAO();
 
         System.out.println("Every sections :");
-        System.out.println(sectionDAO.getAllSections());
+        sectionDAO.getAllSections().forEach(System.out::println);
         System.out.println();
         System.out.printf("Section 1110 : ");
         System.out.println(sectionDAO.getSectionByID(1110));

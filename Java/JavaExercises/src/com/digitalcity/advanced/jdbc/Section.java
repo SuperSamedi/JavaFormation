@@ -37,6 +37,6 @@ public class Section {
 
     @Override
     public String toString() {
-        return "\nSection{ " + "id : " + id + ", name : " + name + ", delegateID : " + delegateID + "}";
+        return "Section{ " + id + " | " + name + " | " + delegateID + " }";
     }
 }
