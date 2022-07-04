@@ -3,9 +3,9 @@ package com.digitalcity.advanced.jdbc;
 public class Section {
     private int id;
     private String name;
-    private int delegateID;
+    private Integer delegateID;
 
-    public Section(int id, String name, int delegateID) {
+    public Section(int id, String name, Integer delegateID) {
         this.id = id;
         this.name = name;
         this.delegateID = delegateID;
@@ -27,11 +27,11 @@ public class Section {
         name = value;
     }
 
-    public int getDelegateID() {
+    public Integer getDelegateID() {
         return delegateID;
     }
 
-    public void setDelegateID(int value) {
+    public void setDelegateID(Integer value) {
         delegateID = value;
     }
 
