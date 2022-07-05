@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 0 8%;
+    background-image: url(img/background.jpg);
+}
+
+h1 {
+    color: goldenrod;
+    text-shadow: 1px 1px 2px gold;
+    margin-bottom: 2%;
+}
+
+p {
+    margin-bottom: 1%;
+}
+
+div > p {
+    font-weight: bold;
+}
+
+img {
+    width: 60%;
+    margin-bottom: 2%;
+}
+
+section {
+    margin-bottom: 2%;
+}
+
+h2 {
+    border-bottom: 2px solid gold;
+    background-color: lightyellow;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+dt {
+    font-style: italic;
+    color: goldenrod;
+}
+
+dd {
+    margin-left: 3%;
+    margin-bottom: 2%;
+}
+
+li {
+    margin-left: 25px;
+}
+
+/* Flex  */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 100vh;
+    padding: 5%;
+}
+
+.top-container {
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.img-container, .exp-comp-container {
+    width: 50%;
+}
+
+.img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.exp-comp-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.exp-comp-container section {
+    width: 80%;
+}
+
+section {
+    border: 2px solid gold;
+}
+
+@media screen and (max-width:768px) {
+    section {
+        background-color: magenta;
+    }
+}

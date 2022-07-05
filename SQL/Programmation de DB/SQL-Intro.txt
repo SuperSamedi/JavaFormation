@@ -1,0 +1,55 @@
+CREATE TABLE movie(
+	id int,
+	name varchar(50)
+);
+
+CREATE TABLE realisateur(
+	id int PRIMARY KEY AUTO_INCREMENT,
+    	name varchar(50) DEFAULT 'Alan Smithee'
+);
+
+INSERT INTO movie(id, name)
+VALUES(1, 'Harry Potter et la pierre philosophale'),
+(2, 'Harry Potter et la chambre des secrets')
+
+INSERT INTO realisateur(name)
+VALUES ("Quentin Tarentino")
+
+DROP TABLE movie
+
+CREATE TABLE movie(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(50) NOT NULL,
+    realisateur_id int,
+    CONSTRAINT FK_realisateur FOREIGN KEY(realisateur_id) REFERENCES realisateur(id)
+);
+
+INSERT INTO movie(name, realisateur_id)
+VALUES ("Pulp Fiction", 1);
+
+CREATE TABLE persons(
+Name varchar(50),
+Age int,
+City varchar(50)
+CONSTRAINT CHK_Person CHECK(Age >= 18 AND City = "Sandes")
+)
+
+Exo1_Corriger la synthaxe
+CREATE TABLE T_office
+(office_id INTEGER,
+office_address VARCHAR(30),
+CONSTRAINT PK_office PRIMARY KEY (office_id))
+
+CREATE TABLE T_course
+(crs_code CHAR(8) NIT NULL PRIMARY KEY,
+crs name VARCHAR(30)
+CONSTRAINT UK_crs UNIQUE(crs_name))
+
+CREATE TABLE T_professor
+(prf_id INTEGER NOT NULL PRIMARY KEY,
+prf_name VARCHAR(30),
+prf_course CHAR(8)
+CONSTRAINT PK_course REFERENCES T_course (crs_code),
+ON DELETE SET NULL,
+office_id CHAR(2) REFERENCES T_office,
+CONSTRAINT prf_name UNIQUE (prf_name))

@@ -1,0 +1,224 @@
+* {
+    margin : 0;
+    padding: 0;
+}
+
+body{
+    background-image: url("img/background_gold.jpg");
+    display:flex;
+    justify-content: center;
+    /* height: 100vh; */
+}
+
+div{
+    background-color: white;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 700px;
+    padding: 0% 5%;
+    height : 100vh;
+}
+
+#top-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-top: 5%;
+    /* flex-wrap: wrap; */
+}
+
+.vertical{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-grow: 1;
+    min-width : 200px;
+}
+
+#apercu {
+    align-items: center;
+}
+
+#experience_competences {
+    margin-right : 5%;
+    margin-left: 5%;
+    justify-content:space-around;
+    align-items: stretch;
+}
+
+h1{
+    color :goldenrod;
+    text-shadow: 1px 1px 2px gold;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+p{
+    margin : 0.5em;
+}
+
+img{
+    width : 65%;
+    margin: 2%;
+}
+
+section{
+    margin-bottom: 5%;
+    
+    border: 2px solid gold;
+}
+
+h2{
+    background-color :lightyellow;
+    border-bottom: 2px solid gold;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+ul{
+    margin : 1em 0;
+    padding-left: 2em;
+}
+
+li {
+    list-style:'🦆 ';
+}
+
+
+dl{
+    margin-left : 0.5em
+}
+
+dt {
+    font-style: italic;
+    color :goldenrod;
+}
+
+dd{
+    margin-bottom: 0.5em;
+    margin-left: 1.5em;
+}
+
+.bottom-button {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    background-color: lightyellow;
+    border : 2px solid gold;
+    border-radius: 5px;
+    text-align: center;
+    width: 25%;
+    padding: 5px;
+}
+
+form {
+    width : 100%;
+}
+
+fieldset {
+    border: 2px solid gold;
+    margin-bottom: 1em;
+}
+
+.personal-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+}
+
+.name {
+    display: flex;
+}
+
+.name input {
+    flex-grow: 1;
+}
+
+.sex input{
+    margin-left: 2em;
+}
+
+.phone {
+    display: flex;
+}
+
+.phone input {
+    flex-grow: 1;
+}
+
+.email{
+    display: flex;
+}
+
+.email input {
+    flex-grow: 1;
+}
+
+.personal-info div {
+    margin: 0.25em;
+}
+
+.form-button {
+    background-color: lightyellow;
+    border: 2px solid gold;
+    font-weight: bold;
+}
+
+legend {
+    margin-left: 1em;
+}
+
+.needs{
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75em;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.send-reset {
+    display: flex;
+}
+.send-reset input {
+    flex-grow: 1;
+}
+
+.spacing{
+    width : 10px;
+}
+
+a[href="PageDePicsou.html"] input {
+    width: 100%;
+}
+
+textarea{
+    resize: vertical;
+    flex-grow: 1;
+}
+
+@media screen and (max-width:768px) {
+    body {
+        padding: 0;
+        /* background-image: none; */
+    }
+
+    #top-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #main {
+        height: auto;
+    }
+
+    #experience_competences {
+        margin: 0;
+    }
+}

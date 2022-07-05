@@ -1,0 +1,33 @@
+Code (.java) -> Compiler -> Byte code -> JVM (Java Virtual Machine execute le code pour linux, win, mac)
+
+variables primitives:
+-byte (entier entre -128 et 127)
+-short
+-int
+-long (tres tres grand nombres)
+-float (nmbre à virgule)
+-double (nmbre à virgule avec plus de précision derrière la virgule)
+-bool (vrai/faux)
+-char
+-String (classe, chaine de charactères, a des methods qu'on peut appeler pour agir sur la chaine de char)
+
+Opérateurs relationel
+>
+>=
+<
+<=
+==
+!=
+
+Opérateurs logiques
+&& (et - vrai si les 2 éléments sont vrais)
+|| (ou - faux si les 2 éléments sont faux)
+! (l'inverse)
+
+Autres opérateurs
+++ (incrémentation de 1)
+-- (décrémentation de 1)
++=
+-=
+*=
+/=
