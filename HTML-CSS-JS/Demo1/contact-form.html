@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picsou - Contact</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="main">
+
+        <h1>Formulaire de contact</h1>
+    
+        <form>
+            <fieldset>
+                <legend>Coordonnées</legend>
+                <div class="personal-info">
+                    <div class="name">
+                        <input type="text" name="last-name" id="last-name" placeholder="Nom">
+                        <div class="spacing"></div>
+                        <input type="text" name="first-name" id="first-name" placeholder="Prénom">
+                    </div>
+                    <div class="sex">
+                        <label for="sex-radio">Sexe : </label>
+                        <input type="radio" name="sex" id="rb_male" value="m">
+                        <label for="rb_male">Homme</label>
+                        <input type="radio" name="sex" id="rb_female" value="f">
+                        <label for="rb_male">Femme</label>
+                        <input type="radio" name="sex" id="rb_other" value="x">
+                        <label for="rb_male">Autre</label>
+                    </div>
+                    <div class="email">
+                        <input type="email" name="email" id="email" placeholder="E-mail">
+                    </div>
+                    <div class="phone">
+                        <input type="tel" name="mobile-tel" id="mobile-tel" placeholder="N° mobile">
+                        <div class="spacing"></div>
+                        <input type="tel" name="home-tel" id="home-tel" placeholder="N° fixe">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Vos besoins</legend>
+                <div class="needs">
+                    <select name="service-required" id="service-list">
+                        <option value="html-css" selected>HTML-CSS</option>
+                        <option value="java">Java</option>
+                        <option value="csharp">C#</option>
+                    </select>
+                    <div class="spacing"></div>
+                    <textarea name="message" id="message" placeholder="Description"></textarea>
+                </div>
+            </fieldset>
+
+            <div class="buttons">
+                <div class="send-reset">
+                    <input class="form-button" type="submit">
+                    <div class="spacing"></div>
+                    <input class="form-button" type="reset" value="Reset">
+                </div>
+                <br>
+                <div class="back-button">
+                    <a href="PageDePicsou.html"><input class="form-button" type="button" value="Retour au CV"></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

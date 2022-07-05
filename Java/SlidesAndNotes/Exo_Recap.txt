@@ -1,0 +1,11 @@
+- Faire un pendu:
+	- Générer aléatoirement un mot à
+	partir d'une liste de mot
+	- Générer un "mot caché" (**a***)
+	qui change à chaque fois que 
+	l'utilisateur trouve une lettre
+	- Nombre d'essai
+	BONUS:
+	- Niveau de difficulté
+
+- Faire un MasterMind

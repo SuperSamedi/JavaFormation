@@ -1,0 +1,180 @@
+* {
+    margin : 0;
+    padding : 0;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: black;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    height: 10em;
+    background-color: white;
+    overflow: hidden;
+    width: 100%;
+}
+
+header h1 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 5em;
+    text-shadow: 5px 5px 10px black;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    height: 3em;
+    background-color: rgb(44, 44, 44);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* margin: 1px; */
+    padding-left: 1em;
+    padding-right: 1em;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: rgb(63, 63, 63);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5em;
+    transition: background-color 0.5s ease;
+}
+nav a:hover {
+    background-color: salmon;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 3em;
+    padding-right: 3em;
+    width: 100%;
+    background-color: rgb(32, 32, 32);
+}
+
+.simpleButton {
+    margin: 1em;
+    padding: 1em;
+    background-color: salmon;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 25px;
+    text-align: center;
+}
+
+#backToTop {
+    align-self: flex-end;
+}
+
+hr {
+    border: 1px solid black;
+    background: none;
+    width: 100%;
+}
+
+/*** Video ***/
+.iframeVideoWrapper {
+    display: flex;
+    justify-content: center;
+    aspect-ratio: 16/9;
+    width: 100%;
+    max-width: 800px;
+    margin: 2em 0;
+}
+
+.iframeVideoWrapper iframe {
+    width: 100%; 
+    height: 100%; 
+    border: .25em solid salmon;
+    border-radius: 1em;
+}
+
+/*** Article ***/
+.article {
+    display: flex;
+    text-align: justify;
+    margin: 2em 0;
+}
+
+.article img {
+    border: 0.25em solid salmon;
+    border-radius: 1em;
+    width: 33%;
+    height: auto;
+    float: left;
+    margin-right: 0.5em;
+    transition: border 0.25s ease-out;
+}
+.article img:hover {
+    border: 0.25em solid white;
+}
+.article img:active {
+    border: 0.25em solid gold;
+}
+
+.article p {
+    color:rgb(137, 118, 247)
+}
+
+
+/*** Fade in on hover ***/
+.fade-in-on-hover {
+    background-image: url('/images/clouds.jpg');
+    background-size: cover;
+    position: relative;
+    width: 100%;
+
+    /* Animation */
+    animation-name: pan-horizontal;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pan-horizontal {
+    from {background-position: 0% 0%;}
+    to {background-position: 100% 100%;}
+}
+
+.overlay:hover {
+    opacity: 1;
+}
+
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity .5s ease-out;
+    background-color: #2222225d;
+}

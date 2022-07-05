@@ -1,0 +1,9 @@
+Board[y][x]
+  0 1 2 3
+0 O O O O Y0
+1 O O O O Y1
+2 O O O O Y2
+3 O O O O Y3
+  X X X X
+  0 1 2 3
+

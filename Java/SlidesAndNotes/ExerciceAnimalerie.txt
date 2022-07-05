@@ -1,0 +1,29 @@
+Find if class est de type sous-classe:
+	class instanceof sous-classe
+
+Animalerie:
+base class Animal
+	name
+	sexe enum
+	weight
+	height
+	age
+	humanAgeEquivalentMultiplier
+	arrivingDate
+	deathRate
+		getHumanAgeEquivalent
+
+	class dog
+		collarColor enum
+		trained
+		breed
+		
+
+	class cat
+		character enum
+		clawsAreCut bool
+		longHair bool
+
+	class bird
+		color
+		livingInCage
