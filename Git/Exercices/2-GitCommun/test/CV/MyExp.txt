@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+-developpeur backend sapervedere
+-developpeur freelance projet fernelmove
+-hackaton
+-Coach consultant - Projet de fin d'année école ESA section IT - Bruxelles
+-Pompier à Saint-Tropez - Secteur feux dangereux qui brûlent
+=======
+-Président de la république 
+-ministre des moldus
+>>>>>>> a1940cab19edbbba12f29b57cb60ae8ea2b22bcc
