@@ -26,13 +26,13 @@ public class Program {
         allSections.forEach(System.out::println);
 
         // Insert
-        System.out.println("\n\n----- INSERT -----");
-        Section toInsert = new Section(999, "Dark Arts", 666);
-        manager.getTransaction().begin();
-        manager.persist(toInsert);
-        manager.getTransaction().commit();
-        System.out.println("\nInserted: ");
-        System.out.println(toInsert);
+//        System.out.println("\n\n----- INSERT -----");
+//        Section toInsert = new Section(999, "Dark Arts", 666);
+//        manager.getTransaction().begin();
+//        manager.persist(toInsert);
+//        manager.getTransaction().commit();
+//        System.out.println("\nInserted: ");
+//        System.out.println(toInsert);
 
         // Delete
         System.out.println("\n\n----- DELETE -----");
@@ -46,7 +46,7 @@ public class Program {
         // Update
         System.out.println("\n\n----- UPDATE -----");
         manager.getTransaction().begin();
-        s.setDelegateId(25);
+//        s.setDelegateId(25);
         manager.getTransaction().commit();
         System.out.println("Updated:");
         System.out.println(s);
