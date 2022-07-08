@@ -9,18 +9,31 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Director {
     @Id
-    @Column(name = "director_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
-    @Column(name = "salary")
-    private long salary;
+    @Column(name = "salary", columnDefinition = "DECIMAL(8,2")
+    private double salary;
 
-    @OneToOne(mappedBy = "director")
-    private Store store;
+    @OneToOne
+    @JoinColumn(name = "market_id")
+    private Market market;
+
+    public Director(String firstName, String lastName, double salary, Market market) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.market = market;
+    }
+
+    @Override
+    public String toString() {
+        return "Director{ #" + id + ", " + firstName + ' ' + lastName + ", $" + salary + " }";
+    }
 }

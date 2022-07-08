@@ -29,8 +29,6 @@ public class Student {
     private LocalDateTime dateOfBirth;
     @Column(name = "login")
     private String login;
-//    @Column(name = "section_id")
-//    private int sectionId;
     @Column(name = "year_result")
     private int yearResult;
     @Column(name = "course_id")

@@ -12,18 +12,29 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Product {
     @Id
-    @Column(name = "product_id")
+    @Column(name = "id")
     private String id;
-    @Column(name = "product_name")
+    @Column(name = "name")
     private String name;
-    @Column(name = "product_brand")
+    @Column(name = "brand")
     private String brand;
-    @Column(name = "product_price")
-    private long price;
+    @Column(name = "price", columnDefinition = "DECIMAL(6,2)")
+    private double price;
 
     @ManyToMany(mappedBy = "products")
-    private Set<Store> stores = new HashSet<>();
+    private Set<Market> markets = new HashSet<>();
+
+    public Product(String id, String name, String brand, double price) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{ #" + id + ", " + name + ", " + brand + ", $" + price + " }";
+    }
 }
