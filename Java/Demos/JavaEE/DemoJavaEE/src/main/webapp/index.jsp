@@ -12,15 +12,13 @@
     <html>
         <head>
             <title>Cards!</title>
-
+            <link rel="stylesheet" href="styles/styles.css">
         </head>
     <body>
         <h1>Cards!</h1>
         <br/>
-        <a href="product/addCardForm.jsp">Add a card</a>
-        <br/>
-        <a href="product/getAll.jsp">All cards</a>
-        <br/>
+        <a href="product/addCardForm.jsp">Add a card</a><br/>
+        <a href="product/getAll.jsp">All cards</a><br/>
         <a href="product/getOne.jsp">Singles</a>
     </body>
 </html>

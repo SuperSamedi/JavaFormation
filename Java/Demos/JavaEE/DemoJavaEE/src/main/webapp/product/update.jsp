@@ -1,4 +1,4 @@
-<%--
+<%@ page import="brussels.digitalcity.maxdolmans.demojavaee.models.Product" %><%--
   Created by IntelliJ IDEA.
   User: JAVA
   Date: 12-07-22
@@ -11,28 +11,28 @@
     <title>Cards! - Add Card</title>
 </head>
 <body>
-<a href="<%= request.getContextPath() %>/index.jsp">Home</a>
-<h1>Add a card</h1>
+<% Product toUpdate = (Product)request.getAttribute("product"); %>
 
-<form action="<%= request.getContextPath()%>/product/add" method="post">
+<a href="<%= request.getContextPath() %>/index.jsp">Home</a>
+<h1>Update a card</h1>
+
+<form action="<%= request.getContextPath()%>/product/update" method="post">
     <fieldset>
-        <legend>New Card</legend>
+        <legend>Update Card</legend>
+        <input type="hidden" name="id" id="in-id" value="<%= toUpdate.getId() %>">
         <div>
             <label for="in-name">Name: </label><br>
-            <% String name = request.getParameter("name"); %>
-            <input type="text" name="name" id="in-name" placeholder="Name" value="<%= name == null ? "" : name %>">
+            <input type="text" name="name" id="in-name" placeholder="Name" value="<%= toUpdate.getName() %>">
         </div>
 
         <div>
             <label for="in-edition">Edition: </label><br>
-            <% String edition = request.getParameter("edition"); %>
-            <input type="text" name="edition" id="in-edition" placeholder="Edition" value="<%= edition == null ? "" : edition %>">
+            <input type="text" name="edition" id="in-edition" placeholder="Edition" value="<%= toUpdate.getEdition() %>">
         </div>
 
         <div>
             <label for="in-type">Type: </label><br>
-            <% String type = request.getParameter("type"); %>
-            <input type="text" name="type" id="in-type" placeholder="Type" value="<%= type == null ? "" : type %>">
+            <input type="text" name="type" id="in-type" placeholder="Type" value="<%= toUpdate.getType() %>">
         </div>
 
         <div>

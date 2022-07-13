@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ProductService {
 
+    // Singleton pattern
     private static ProductService instance;
 
     public static ProductService getInstance(){
@@ -20,6 +21,8 @@ public class ProductService {
     }
 
     private final List<Product> list = new ArrayList<>();
+    private int lastID;
+
 
     private ProductService() {
         list.add(new Product(1, "Mountain", "Alpha", "Basic Land", 40.));
@@ -27,6 +30,7 @@ public class ProductService {
         list.add(new Product(3, "Island", "Alpha", "Basic Land", 75.25));
         list.add(new Product(4, "Plains", "Alpha", "Basic Land", 26.99));
         list.add(new Product(5, "Swamp", "Alpha", "Basic Land", 43.12));
+        lastID = 5;
     }
 
     public List<Product> getAll() {
@@ -38,5 +42,12 @@ public class ProductService {
                 .filter(product -> product.getId() == id)
                 .findFirst()
                 .orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
+    // Return the auto-generated id
+    public int insert(Product toInsert) {
+        toInsert.setId(++lastID);
+        list.add(toInsert);
+        return lastID;
     }
 }

@@ -13,11 +13,13 @@
     <title>Cards! - GetOne</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+<a href="<%= request.getContextPath() %>/index.jsp">Home</a>
+
 <%-- Déclaration d'un champ de la classe getOne.jsp (avec le '!')--%>
 <%!
     ProductService service = ProductService.getInstance();
 %>
+<h1>Card Detail</h1>
 
 <%--Déclaration de variable locale à la methode 'service' de la Servlet qui va etre 'créée' par getOne.jsp à chacune de ses call.--%>
 <%
@@ -39,7 +41,7 @@
 
 <h1> Product <%= p.getId() %></h1>
 <div>
-    <p><span>id : </span><%= p.getId()%></p>
+<%--    <p><span>id : </span><%= p.getId()%></p>--%>
     <p><span>Name : </span><%= p.getName()%></p>
     <p><span>Set : </span><%= p.getEdition()%></p>
     <p><span>Type : </span><%= p.getType() %></p>
