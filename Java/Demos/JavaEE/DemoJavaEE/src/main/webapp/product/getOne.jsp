@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Cards! - GetOne</title>
@@ -19,7 +20,6 @@
 <%!
     ProductService service = ProductService.getInstance();
 %>
-<h1>Card Detail</h1>
 
 <%--Déclaration de variable locale à la methode 'service' de la Servlet qui va etre 'créée' par getOne.jsp à chacune de ses call.--%>
 <%
@@ -30,19 +30,18 @@
         return;
     }
 
-    if (Integer.parseInt(id) > service.getAll().size()){
+    Product p = service.getOne(Integer.parseInt(id));
+
+    if (p == null){
         response.setStatus(404);
         return;
     }
-
-    Product p = service.getOne(Integer.parseInt(id));
-    PrintWriter writer = response.getWriter();
 %>
 
-<h1> Product <%= p.getId() %></h1>
+<h1> Card #<%= p.getId() %></h1>
 <div>
 <%--    <p><span>id : </span><%= p.getId()%></p>--%>
-    <p><span>Name : </span><%= p.getName()%></p>
+    <p><span>Name : </span><strong><%= p.getName()%></strong></p>
     <p><span>Set : </span><%= p.getEdition()%></p>
     <p><span>Type : </span><%= p.getType() %></p>
     <p><span>Price : </span><%= p.getPrice() %>€</p>

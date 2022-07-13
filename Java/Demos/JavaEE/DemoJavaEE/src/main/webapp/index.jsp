@@ -19,6 +19,6 @@
         <br/>
         <a href="product/addCardForm.jsp">Add a card</a><br/>
         <a href="product/getAll.jsp">All cards</a><br/>
-        <a href="product/getOne.jsp">Singles</a>
+<%--        <a href="product/getOne.jsp">Singles</a>--%>
     </body>
 </html>

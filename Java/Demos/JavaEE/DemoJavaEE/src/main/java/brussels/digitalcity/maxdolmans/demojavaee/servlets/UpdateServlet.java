@@ -10,7 +10,9 @@ import java.io.IOException;
 
 @WebServlet(name = "UpdateServlet", value = "/product/update")
 public class UpdateServlet extends HttpServlet {
+
     private final ProductService service = ProductService.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -25,11 +27,28 @@ public class UpdateServlet extends HttpServlet {
         Product p = service.getOne(id);
 
         request.setAttribute("product", p);
-        request.getRequestDispatcher("product/update.jsp").forward(request, response);
+        request.getRequestDispatcher("/product/update.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int requestId = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String edition = request.getParameter("edition");
+        String type = request.getParameter("type");
+        try{
+            double price = Double.parseDouble(request.getParameter("price"));
+            int id = service.update(requestId, name, edition, type, price);
 
+            response.sendRedirect(request.getContextPath() + "/product/getOne.jsp?id=" + id); // ranvoi une réponse de redirection
+//          request.getRequestDispatcher(request.getContextPath() + "/product/getOne.jsp?id=" + id).forward(request, response); // continue la création de réponse à la page redirect.
+        }
+        catch (NumberFormatException ex){
+            request.getRequestDispatcher(/*request.getContextPath() + */"/product/update?id=" + requestId).forward(request, response);
+//            response.setStatus(400);
+        }
+        catch (IllegalArgumentException ex){
+            request.getRequestDispatcher(/*request.getContextPath() + */"/product/update?id=" + requestId).forward(request, response);
+        }
     }
 }

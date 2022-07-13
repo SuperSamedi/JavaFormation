@@ -9,6 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Cards! - GetAll</title>
@@ -24,11 +25,13 @@
 
 <% for (Product product : service.getAll()) { %>
 <div>
-    <p><span>Name : </span><strong><%= product.getName() %> </strong></p>
-<%--    <p><span>id : </span> <%= product.getId() %> </p>--%>
-    <p><span>Set : </span> <%= product.getEdition() %> </p>
-    <p><span>Type : </span> <%= product.getType() %> </p>
+    <p><span>Name : </span><strong><%= product.getName() %></strong></p>
+    <p><span>Set : </span> <%= product.getEdition() %></p>
+    <p><span>Type : </span> <%= product.getType() %></p>
     <p><span>Price : </span> <%= product.getPrice() %> €</p>
+    <a href="<%= request.getContextPath() %>/product/getOne.jsp?id=<%= product.getId()%>">Details</a>
+    <a href="<%= request.getContextPath() %>/product/update?id=<%= product.getId()%>">Modify</a>
+    <a href="<%= request.getContextPath() %>/product/delete?id=<%= product.getId()%>">Delete</a>
     <hr/>
 </div>
 

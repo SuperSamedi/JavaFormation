@@ -5,13 +5,16 @@ import brussels.digitalcity.maxdolmans.demojavaee.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 public class ProductService {
 
     // Singleton pattern
     private static ProductService instance;
 
-    public static ProductService getInstance(){
+    public static ProductService getInstance() {
         if (instance == null)
             instance = new ProductService();
 
@@ -49,5 +52,21 @@ public class ProductService {
         toInsert.setId(++lastID);
         list.add(toInsert);
         return lastID;
+    }
+
+    public int update(int id, String newName, String newEdition, String newType, double newPrice) {
+        Product p = getOne(id);
+
+        p.setName(newName);
+        p.setEdition(newEdition);
+        p.setType(newType);
+        p.setPrice(newPrice);
+
+        return id;
+    }
+
+    public void delete(int id) {
+        Product p = getOne(id);
+        list.remove(p);
     }
 }
