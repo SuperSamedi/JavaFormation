@@ -17,6 +17,13 @@
 <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
 <h1>Update a card</h1>
 
+<%
+    String error = (String) request.getAttribute("error");
+    if (error != null){ %>
+        <p style="color: red"> <%= error %>
+    <%}
+%>
+
 <form action="<%= request.getContextPath() %>/product/update" method="post">
     <fieldset>
         <legend>Update Card</legend>

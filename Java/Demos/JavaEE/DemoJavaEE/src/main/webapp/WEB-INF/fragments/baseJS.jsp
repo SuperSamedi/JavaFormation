@@ -1,0 +1,1 @@
+<script src="<%= request.getContextPath()%>/assets/js/script.js" defer></script>

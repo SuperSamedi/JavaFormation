@@ -32,23 +32,37 @@ public class UpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int requestId = Integer.parseInt(request.getParameter("id"));
+        Product p = new Product();
+
         String name = request.getParameter("name");
         String edition = request.getParameter("edition");
         String type = request.getParameter("type");
-        try{
-            double price = Double.parseDouble(request.getParameter("price"));
-            int id = service.update(requestId, name, edition, type, price);
 
+        p.setName(name);
+        p.setEdition(edition);
+        p.setType(type);
+
+        double price = 0;
+        int id = 0;
+
+        try{
+            id = Integer.parseInt(request.getParameter("id"));
+            p.setId(id);
+            price = Double.parseDouble(request.getParameter("price"));
+            p.setPrice(price);
+
+            service.update(p.getId(), p.getName(), p.getEdition(), p.getType(), p.getPrice());
             response.sendRedirect(request.getContextPath() + "/product/getOne.jsp?id=" + id); // ranvoi une réponse de redirection
-//          request.getRequestDispatcher(request.getContextPath() + "/product/getOne.jsp?id=" + id).forward(request, response); // continue la création de réponse à la page redirect.
         }
         catch (NumberFormatException ex){
-            request.getRequestDispatcher(/*request.getContextPath() + */"/product/update?id=" + requestId).forward(request, response);
-//            response.setStatus(400);
-        }
-        catch (IllegalArgumentException ex){
-            request.getRequestDispatcher(/*request.getContextPath() + */"/product/update?id=" + requestId).forward(request, response);
+            request.setAttribute("error", "Données entrées non valides");
+            if (p.getId() != 0){
+                request.setAttribute("product", p);
+                request.getRequestDispatcher("/product/update?id=" + id).forward(request, response);
+            }
+            else {
+                response.sendError(400, "ID invalid");
+            }
         }
     }
 }
