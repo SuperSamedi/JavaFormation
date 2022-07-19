@@ -1,0 +1,37 @@
+.carousel-item{
+    height: 700px;
+
+}
+
+#main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#main .card{
+    margin: 10px 0px;
+    transition: 0.4s !important;
+}
+
+#main .card:hover{
+    box-shadow: 3px 3px 8px black;
+    width: 19rem !important;
+}
+
+.img5 {
+    height: 187px;
+}
+
+.image-profil{
+    width: 100px;
+    margin: 1% auto ;
+}
+.image-profil img{
+    width: 100px;
+}
+
+.reservation-h5{
+    text-align: center;
+}
+

@@ -1,4 +1,10 @@
+##### Intellij #####
 **/out
 **/.idea
 *.iml
+
+#####  Visual Studio Code #####
 **/*.vscode
+
+##### Draw.io #####
+**/*.bkp
