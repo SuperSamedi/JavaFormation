@@ -15,11 +15,9 @@ public class Triangle {
 
 //
 //    public Triangle(int sideA, int sideB, int sideC) {
-//        if (isValid(sideA, sideB, sideC)){
-//            this.sideA = sideA;
-//            this.sideB = sideB;
-//            this.sideC = sideC;
-//        }
+//        this.sideA = sideA;
+//        this.sideB = sideB;
+//        this.sideC = sideC;
 //    }
 
     public int getSideA() {
@@ -46,7 +44,40 @@ public class Triangle {
         sideC = value;
     }
 
-    public void checkValidity(int a, int b, int c) throws TriangleException{
 
+    public TriangleType checkValidity() throws TriangleException {
+        // Sides should not be of negative length.
+        if (getSideA() < 0 || getSideB() < 0 || getSideC() < 0) {
+            throw new TriangleException("Error - Triangle sides cannot have a negative length.");
+        }
+
+        // Sides should not have a length of zero.
+        if (getSideA() == 0 || getSideB() == 0 || getSideC() == 0) {
+            throw new TriangleException("Error - Triangle sides cannot have a length of zero.");
+        }
+
+        // The addition of any 2 sides should be greater than the third side.
+        if (  getSideA() >= getSideB() + getSideC()
+            || getSideB() >= getSideA() + getSideC()
+            || getSideC() >= getSideA() + getSideB()) {
+            throw new TriangleException("Error - The specified sides cannot form a triangle. One side cannot be greater than the sum of the two other sides.");
+        }
+
+
+        // When all three sides are equal, the triangle is equilateral.
+        if (getSideA() == getSideB()
+            && getSideA() == getSideC()){
+            return TriangleType.EQUILATERAL;
+        }
+
+        // If only two sides are equal, it is isosceles.
+        if (getSideA() == getSideB()
+            || getSideA() == getSideC()
+            || getSideB() == getSideC()) {
+            return TriangleType.ISOSCELES;
+        }
+
+        // Otherwise, it is scalene.
+        return TriangleType.SCALENE;
     }
 }
