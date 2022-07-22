@@ -1,20 +1,21 @@
 package brussels.digitalcity.tu.exo.triangle;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
+        System.out.println("\n---- == === VALID TRIANGLE CHECK 3000 === == ----");
 
         boolean triangulating = true;
         while(triangulating) {
             Triangle tri = new Triangle();
 
-            System.out.println("Let's create a new triangle!");
+            System.out.print("Let's create a new triangle! ...");
             scan.nextLine();
 
+            // FIRST SIDE
             boolean validInput = false;
             while (!validInput) {
                 System.out.println("How long should side A be? ...");
@@ -29,6 +30,7 @@ public class Program {
                 }
             }
 
+            // SECOND SIDE
             validInput = false;
             while (!validInput) {
                 System.out.println(
@@ -46,6 +48,7 @@ public class Program {
                 }
             }
 
+            // THIRD SIDE
             validInput = false;
             while (!validInput) {
                 System.out.println(
@@ -64,6 +67,7 @@ public class Program {
                 }
             }
 
+            // RESULT
             System.out.println(
                     "\nSide A = " + tri.getSideA() +
                     "\nSide B = " + tri.getSideB() +
@@ -80,13 +84,9 @@ public class Program {
             }
 
             // Draw it in console????
-            //----------#
-            //---------#--#
-            //--------#------#
-            //------############
-            // triangle
-            drawTriangle(tri.getSideA(), tri.getSideB(), tri.getSideC());
+           //drawTriangle(tri.getSideA(), tri.getSideB(), tri.getSideC());
 
+            // RESTART
             System.out.println("\nLet's make a new one?");
 
             validInput = false;
@@ -111,12 +111,14 @@ public class Program {
     }
 
     private static void drawTriangle(int sideA, int sideB, int sideC) {
-        // Triangle height = 2 * Area / base
-        // Heron's formula:
-        // Area = sqrt(s * (s - sideA) * (s - sideB) * (s - sideC))
+        int b; // Base (largest side)
+        double A; // Area
+        double h; // Height
+        double s; // Semi-peimeter
+        double d; // First half of the base (cut by the height)
+        double e; // Second half
 
-        // base = largest side
-        int b = sideB;
+        b = sideB;
         int a = sideA;
         int c = sideC;
 
@@ -131,14 +133,10 @@ public class Program {
             c = sideB;
         }
 
-        // semi-perimeter
-        double s = (sideA + sideB + sideC) * 0.5;
-
-        // Area
-        double A = Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC));
-
-        // height
-        double h = 2 * A / b;
+        s = (sideA + sideB + sideC) * 0.5;
+        // Heron's formula
+        A = Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC));
+        h = 2 * A / b;
 
         // base 2 sides (cut by height perpendicular)
 
@@ -151,9 +149,6 @@ public class Program {
 
         // b = d + e
 
-        double d;
-        double e;
-
         // a² = h² + d²
         // a² - h² = d²
         // sqrt(a² - h²) = d
@@ -164,18 +159,19 @@ public class Program {
         // h * x = 10
         // x = 10 / h
         int heightLimit = 10;
-        d *= heightLimit / h; // first part of base
-        e *= heightLimit / h; // second part of base
+        double scaleFactor = heightLimit / h;
+        d *= scaleFactor; // first part of base
+        e *= scaleFactor; // second part of base
 
-        String sign = "[ ]";
+        String sign = "000";
+        String emptySpace = "...";
         StringBuilder sb = new StringBuilder();
         int lineCount = 0;
-        String lineStart = "\n" + lineCount +" ";
+        String lineStart = "\n";
 
         // Each line.
         for (int i = heightLimit; i > 0; i--) {
-            lineCount++;
-            sb.append(lineStart);
+            sb.append(lineStart).append(lineCount).append(" ");
 
             // Each char space of the line
             for (int j = 0; j < Math.round(d + e) + 1; j++) {
@@ -184,30 +180,15 @@ public class Program {
                     sb.append(sign);
                 }
                 else {
-                    sb.append(" ");
+                    sb.append(emptySpace);
                 }
                 // After height line. (compare to e)
             }
-        }
-        // Line 1:
-        sb.append(lineStart);
-        for (int i = 0; i < Math.round(d) - 1; i++) {
-            sb.append(" ");
-        }
-        sb.append(sign);
 
-        // Line 2
-        sb.append(lineStart);
-
-
-        // Line 10
-        sb.append(lineStart);
-        for (int i = 0; i < Math.round(d + e); i++) {
-            sb.append(sign);
+            lineCount++;
         }
 
         System.out.println(sb);
-
     }
 }
 

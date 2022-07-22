@@ -13,12 +13,6 @@ public class Triangle {
     private int sideB;
     private int sideC;
 
-//
-//    public Triangle(int sideA, int sideB, int sideC) {
-//        this.sideA = sideA;
-//        this.sideB = sideB;
-//        this.sideC = sideC;
-//    }
 
     public int getSideA() {
         return sideA;
@@ -47,23 +41,28 @@ public class Triangle {
 
     public TriangleType checkValidity() throws TriangleException {
         // Sides should not be of negative length.
-        if (getSideA() < 0 || getSideB() < 0 || getSideC() < 0) {
-            throw new TriangleException("Error - Triangle sides cannot have a negative length.");
+        if (getSideA() < 0
+            || getSideB() < 0
+            || getSideC() < 0) {
+            throw new TriangleException(MessageBadTriangle.SIDE_NEGATIVE);
         }
 
         // Sides should not have a length of zero.
-        if (getSideA() == 0 || getSideB() == 0 || getSideC() == 0) {
-            throw new TriangleException("Error - Triangle sides cannot have a length of zero.");
+        if (getSideA() == 0
+            || getSideB() == 0
+            || getSideC() == 0) {
+            throw new TriangleException(MessageBadTriangle.SIDE_ZERO);
         }
 
         // The addition of any 2 sides should be greater than the third side.
         if (  getSideA() >= getSideB() + getSideC()
             || getSideB() >= getSideA() + getSideC()
             || getSideC() >= getSideA() + getSideB()) {
-            throw new TriangleException("Error - The specified sides cannot form a triangle. One side cannot be greater than the sum of the two other sides.");
+            throw new TriangleException(MessageBadTriangle.SIDE_TOO_LONG);
         }
 
 
+        // We check the triangle type once we passed all non-triangle situations check.
         // When all three sides are equal, the triangle is equilateral.
         if (getSideA() == getSideB()
             && getSideA() == getSideC()){

@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class TestInfoDemoTests {
 
     private Logger logger = Logger.getLogger(TestInfoDemoTests.class.getName());
@@ -25,6 +27,11 @@ public class TestInfoDemoTests {
         ));
     }
 
-    @RepeatedTest(100)
-    void repeatTest() {}
+    int i = 0;
+    @DisplayName("Repeating Test")
+    @RepeatedTest(value = 10, name = "{displayName} ({currentRepetition}/{totalRepetitions})")
+    void repeatTest(RepetitionInfo repetitionInfo) {
+        i++;
+        assertEquals(i, repetitionInfo.getCurrentRepetition());
+    }
 }
