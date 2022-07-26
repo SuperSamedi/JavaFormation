@@ -1,0 +1,12 @@
+Nouveau projet:
+1: Choisir Spring Initializr dans les generators.
+	- Ou https://start.spring.io - Spring initializr - Récupérer un zip qui est une solution spring.
+2: Maven type
+3: Packaging : Jar
+4: Dependencies: 
+	- Developer tools: Lombok 
+	- Web: Spring Web 
+	- Template Engines: Thymeleaf 
+	- SQL: 	-Spring Data JPA
+		-H2 Database (db locale)
+		-Mariadb ou Mysql Driver

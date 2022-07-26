@@ -1,0 +1,3 @@
+Interface qui ne peut avoir qu'une seule methode "normale" peut avoir des methodes "default" et "static" aussi.
+Annotation @FunctionalInterface garantit ce contract.
+1. 

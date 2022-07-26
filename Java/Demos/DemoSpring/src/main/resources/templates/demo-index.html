@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>La Page des pages</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>N'est-elle po belle c'te page?</h1>
+
+    <h2 th:text="${answer}">Si, quand même pas mal dis...</h2>
+
+    <ul>
+        <li th:each="answ : ${answers}" th:text="${answ}"></li>
+    </ul>
+
+</body>
+</html>
