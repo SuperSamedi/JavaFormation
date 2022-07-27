@@ -2,18 +2,35 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>La Page des pages</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>FC Java</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+    <link rel="shortcut icon" th:href="@{/soccer-ball.png}" type="image/x-icon">
 </head>
 <body>
 
-    <h1>N'est-elle po belle c'te page?</h1>
+    <div id="cover">
+        <img id="stadium" src="/stadium.jpg" alt="Stadium">
+        <div id="fc-java">
+            <h1>FC JAVA</h1>
+            <h2>Attention, Java chauffer !</h2>
+        </div>
+    </div>
 
-    <h2 th:text="${answer}">Si, quand même pas mal dis...</h2>
+    <div id="balls">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+    </div>
 
-    <ul>
-        <li th:each="answ : ${answers}" th:text="${answ}"></li>
-    </ul>
+    <div id="content">
+        <h1>N'est-elle po belle c'te page?</h1>
+        <h2 th:text="${answer}">Si, quand même pas mal dis...</h2>
+        <ul>
+            <li th:each="answ : ${answers}" th:text="${answ}"></li>
+        </ul>
+    </div>
 
 </body>
 </html>

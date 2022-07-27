@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FC Java</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+    <link rel="shortcut icon" th:href="@{/soccer-ball.png}" type="image/x-icon">
+</head>
+<body>
+
+    <div id="cover">
+        <img id="stadium" src="/stadium.jpg" alt="Stadium">
+        <div id="fc-java">
+            <h1>FC JAVA</h1>
+            <h2>Attention, Java chauffer !</h2>
+        </div>
+    </div>
+
+    <div id="balls">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+        <img class="ball" src="/soccer-ball.png" alt="Soccer ball">
+    </div>
+
+    <div id="contenu">
+        <h1>Quelle joueur !</h1>
+                <div class="player">
+                    <div class="name">
+                        <span th:text="${player.name}"></span>
+                    </div>
+                    <div class="number">
+                        <span>Numéro: </span><span class="number" th:text="${player.number}"></span>
+                    </div>
+                    <div class="position">
+                        <span>Position: </span><span class="position" th:text="${player.position}"></span>
+                    </div>
+                    <div class="salary">
+                        <span>Salaire: </span><span class="salary" th:text="${player.salary}"></span>
+                    </div>
+                    <div class="age">
+                        <span>Age: </span><span class="age" th:text="${player.age}"></span>
+                    </div>
+                </div>
+    </div>
+</body>
+</html>

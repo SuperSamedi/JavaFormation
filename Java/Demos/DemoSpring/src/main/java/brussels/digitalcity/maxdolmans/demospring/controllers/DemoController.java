@@ -22,12 +22,13 @@ public class DemoController {
             "Po torp mal, ouais..."
     );
 
+
     @RequestMapping(path = "/la-page", method = RequestMethod.GET)
     public ModelAndView bellePage() {
         ModelAndView mv = new ModelAndView("demo-index");
 
-        String valeur = answers.get(rng.nextInt(answers.size()));
-        mv.addObject("answer", valeur);
+        String value = answers.get(rng.nextInt(answers.size()));
+        mv.addObject("answer", value);
         mv.addObject("answers", answers);
 
         return mv;
