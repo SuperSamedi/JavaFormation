@@ -13,6 +13,9 @@ import java.util.List;
 public class DataInit implements InitializingBean {
 
     private final PlayerService playerService;
+    public DataInit(PlayerService playerService) {
+        this.playerService = playerService;
+    }
 
     private List<Player> players = Arrays.asList(
             Player.builder()
@@ -100,10 +103,6 @@ public class DataInit implements InitializingBean {
                     .salary(42_420.42)
                     .build()
     );
-
-    public DataInit(PlayerService playerService) {
-        this.playerService = playerService;
-    }
 
     @Override
     public void afterPropertiesSet() throws Exception {
