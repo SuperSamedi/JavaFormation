@@ -1,6 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/
+    url: jdbc:postgresql://localhost:5433/nursery_db
     username: postgres
-    password: pass
+    password: 1234
     driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
