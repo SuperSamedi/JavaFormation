@@ -3,19 +3,16 @@ package brussels.digitalcity.maxdolmans.demorest.models.forms;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @Getter @Setter
-public class ChildUpdateForm {
+public class GuardianUpdateForm {
 
     private String firstName;
     private String lastName;
-    private LocalDate dateOfBirth;
-    private boolean cleanliness;
-    private List<String> allergies;
-    private Set<Long> guardiansId;
+    private String phoneNumber;
+    private String address;
+    private Set<Long> childrenId;
 
     // Remplacement pour le mapper
 //    public Child toEntity() {

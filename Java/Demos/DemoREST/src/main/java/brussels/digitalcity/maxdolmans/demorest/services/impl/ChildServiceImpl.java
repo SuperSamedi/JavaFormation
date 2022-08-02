@@ -31,6 +31,17 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
+    public Child getOne(Long id) {
+        return repository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public List<Child> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Child update(Long id, Child child) {
         if (child == null || id == null){
             throw new IllegalArgumentException("Updated child or their id should not be null.");
@@ -43,17 +54,6 @@ public class ChildServiceImpl implements ChildService {
         child.setId(id);
 
         return repository.save(child);
-    }
-
-    @Override
-    public Child getOne(Long id) {
-        return repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-    }
-
-    @Override
-    public List<Child> getAll() {
-        return repository.findAll();
     }
 
     @Override

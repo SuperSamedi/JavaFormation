@@ -22,4 +22,10 @@ public class Guardian extends Person{
     @ManyToMany(mappedBy = "guardians")
     private Set<Child> children;
 
+
+    public Guardian(String firstName, String lastName, String phoneNumber, String address) {
+        super(firstName, lastName);
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
 }
