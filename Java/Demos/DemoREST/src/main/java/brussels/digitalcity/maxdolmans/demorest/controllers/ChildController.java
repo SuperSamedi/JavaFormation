@@ -4,7 +4,8 @@ import brussels.digitalcity.maxdolmans.demorest.mapper.ChildMapper;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
-import brussels.digitalcity.maxdolmans.demorest.services.IChildService;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
+import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +14,10 @@ import java.util.List;
 @RequestMapping(path = "/api/child")
 public class ChildController {
 
-    private final IChildService service;
+    private final ChildService service;
     private final ChildMapper mapper;
 
-    public ChildController(IChildService service, ChildMapper mapper) {
+    public ChildController(ChildService service, ChildMapper mapper) {
         this.service = service;
         this.mapper = mapper;
     }
@@ -34,7 +35,18 @@ public class ChildController {
     }
 
     @PostMapping(path = "/add")
-    public ChildDTO insert(@RequestBody ChildInsertForm child) {
-        return mapper.toDTO( service.save(mapper.toEntity(child)) );
+    public ChildDTO create(@RequestBody ChildInsertForm child) {
+        return mapper.toDTO( service.create( mapper.toEntity(child) ) );
+    }
+
+    @PutMapping("/{id}")
+    public ChildDTO update(@PathVariable long id, @RequestBody ChildUpdateForm form) {
+        Child entity = mapper.toEntity(form);
+        return mapper.toDTO( service.update( id, entity ) );
+    }
+
+    @DeleteMapping("/{id}")
+    public ChildDTO delete(@PathVariable Long id){
+        return mapper.toDTO(service.delete(id));
     }
 }

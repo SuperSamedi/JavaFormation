@@ -1,0 +1,22 @@
+Intellij:
+	| Spring Initializr:
+	| or http://start.spring.io:
+		Project Maven
+		Language Java
+		Setup group ID
+		Setup Artifact ID
+		Setup application version
+		package ID -> group id + artifact id
+	Dependencies: ( depdendencies versions must be compatible with the Intellij version -> see library's doc )
+		Lombok
+		Spring Web
+		Spring Session
+		Thymeleaf or other template engine
+		Spring Security
+		MySQL Drivers or PostgreSQL (or H2 during devloppment)
+		Validation
+		Spring Security
+		Spring dev tools
+		Spring configuration processor
+	application.yml configuration
+		datasource

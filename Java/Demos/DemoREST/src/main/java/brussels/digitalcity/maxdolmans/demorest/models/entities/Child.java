@@ -19,7 +19,7 @@ public class Child extends Person{
 
     private boolean clean;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> allergies;
 
     @ManyToMany

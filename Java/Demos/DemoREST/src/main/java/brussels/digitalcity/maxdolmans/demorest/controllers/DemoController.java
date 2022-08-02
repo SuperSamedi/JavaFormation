@@ -18,6 +18,7 @@ public class DemoController {
 
     // GET - http://localhost:8080/api/bob
     @GetMapping(path = "/bob")
+    @ResponseBody // le retour de la method sera le body
     @ResponseStatus(HttpStatus.OK)
     public Person getPerson() {
         return new Child("Spongebob", "Squarepants", LocalDate.now(), false);

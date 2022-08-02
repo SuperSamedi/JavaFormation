@@ -1,7 +1,7 @@
 package brussels.digitalcity.maxdolmans.demorest.utils;
 
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
-import brussels.digitalcity.maxdolmans.demorest.services.impl.ChildService;
+import brussels.digitalcity.maxdolmans.demorest.services.impl.ChildServiceImpl;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +12,11 @@ import java.util.List;
 @Service
 public class DataInit implements InitializingBean {
 
-    private final ChildService childService;
+    private final ChildServiceImpl childServiceImpl;
 
 
-    public DataInit(ChildService childService) {
-        this.childService = childService;
+    public DataInit(ChildServiceImpl childServiceImpl) {
+        this.childServiceImpl = childServiceImpl;
     }
 
     private List<Child> children = Arrays.asList(
@@ -32,7 +32,7 @@ public class DataInit implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         try{
-            children.forEach(childService::save);
+            children.forEach(childServiceImpl::save);
         }
         catch(IllegalArgumentException ex) {
             System.out.println(ex.getMessage());

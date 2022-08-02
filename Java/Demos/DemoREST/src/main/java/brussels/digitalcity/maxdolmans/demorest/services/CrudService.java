@@ -2,11 +2,14 @@ package brussels.digitalcity.maxdolmans.demorest.services;
 
 import java.util.List;
 
-public interface ICrudService<T, TID>{
+public interface CrudService<T, TID>{
     // C.R.U.D.
 
-    // CREATE / UPDATE
-    T save(T child );
+    // CREATE
+    T create(T toCreate );
+
+    // UPDATE
+    T update(TID id, T toUpdate);
 
     // READ
     T getOne(TID id);

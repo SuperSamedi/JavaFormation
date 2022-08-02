@@ -1,16 +1,21 @@
 package brussels.digitalcity.maxdolmans.demorest.services.impl;
 
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
-import brussels.digitalcity.maxdolmans.demorest.services.IChildService;
-import org.springframework.stereotype.Service;
+import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 
 import java.util.List;
 
 //@Service
-public class MockIChildService implements IChildService {
+public class ChildServiceMock implements ChildService {
+
     @Override
-    public Child save(Child child) {
-        return new Child();
+    public Child create(Child toCreate) {
+        return null;
+    }
+
+    @Override
+    public Child update(Long id, Child toUpdate) {
+        return null;
     }
 
     @Override
