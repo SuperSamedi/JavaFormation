@@ -57,10 +57,9 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
-    public Child delete(Long id) {
+    public void delete(Long id) {
         Child toDelete = getOne(id);
         repository.delete(toDelete);
         toDelete.setId(0L);
-        return toDelete;
     }
 }

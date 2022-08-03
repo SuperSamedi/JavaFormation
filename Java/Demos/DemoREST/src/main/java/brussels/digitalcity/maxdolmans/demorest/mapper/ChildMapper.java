@@ -1,22 +1,25 @@
 package brussels.digitalcity.maxdolmans.demorest.mapper;
 
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
+import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class ChildMapper {
 
     private final GuardianService guardianService;
+    private final GuardianMapper guardianMapper;
 
-    public ChildMapper(GuardianService guardianService) {
+    public ChildMapper(GuardianService guardianService, GuardianMapper guardianMapper) {
         this.guardianService = guardianService;
+        this.guardianMapper = guardianMapper;
     }
 
 
@@ -24,6 +27,10 @@ public class ChildMapper {
         if (entity == null) {
             return null;
         }
+
+        Set<GuardianDTO> dtos = entity.getGuardians().stream()
+                .map(guardianMapper::toDTO)
+                .collect(Collectors.toSet());
 
         ChildDTO dto = new ChildDTO();
 
@@ -33,11 +40,7 @@ public class ChildMapper {
         dto.setDateOfBirth(entity.getDateOfBirth());
         dto.setCleanliness(entity.isClean() ? "clean" : "not clean");
         dto.setAllergies(entity.getAllergies());
-        dto.setGuardiansId(
-                entity.getGuardians().stream()
-                        .map(Guardian::getId)
-                        .collect(Collectors.toSet()));
-        //dto.setGuardians(entity.getGuardians());
+        dto.setGuardians(dtos);
 
         return dto;
     }
@@ -68,7 +71,7 @@ public class ChildMapper {
         entity.setFirstName(form.getFirstName());
         entity.setLastName(form.getLastName());
         entity.setDateOfBirth(form.getDateOfBirth());
-        entity.setClean(form.isCleanliness());
+        entity.setClean(form.isClean());
         entity.setAllergies(form.getAllergies());
         entity.setGuardians(
                 form.getGuardiansId().stream()

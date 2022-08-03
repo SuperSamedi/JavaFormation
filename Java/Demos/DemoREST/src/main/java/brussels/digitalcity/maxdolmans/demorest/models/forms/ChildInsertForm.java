@@ -7,8 +7,10 @@ import java.time.LocalDate;
 
 @Getter @Setter
 public class ChildInsertForm {
+
     private String firstname;
     private String lastName;
     private LocalDate dateOfBirth;
     private boolean clean;
+
 }

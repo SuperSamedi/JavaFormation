@@ -13,7 +13,7 @@ public class ChildUpdateForm {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
-    private boolean cleanliness;
+    private boolean clean;
     private List<String> allergies;
     private Set<Long> guardiansId;
 

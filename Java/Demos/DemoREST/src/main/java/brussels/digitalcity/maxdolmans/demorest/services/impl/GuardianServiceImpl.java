@@ -1,12 +1,15 @@
 package brussels.digitalcity.maxdolmans.demorest.services.impl;
 
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
+import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.repositories.GuardianRepository;
+import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,11 +17,12 @@ import java.util.Set;
 public class GuardianServiceImpl implements GuardianService {
 
     private final GuardianRepository repository;
+    private final ChildService childService;
 
-    public GuardianServiceImpl(GuardianRepository repository) {
+    public GuardianServiceImpl(GuardianRepository repository, ChildService childService) {
         this.repository = repository;
+        this.childService = childService;
     }
-
 
     @Override
     public Guardian create(Guardian guardian) {
@@ -34,17 +38,12 @@ public class GuardianServiceImpl implements GuardianService {
     @Override
     public Guardian getOne(Long id) {
         return repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new ElementNotFoundException("Cannot find guardian.", Guardian.class, id));
     }
 
     @Override
     public List<Guardian> getAll() {
         return repository.findAll();
-    }
-
-    public Set<Child> getChildrenOfGuardian(Long id) {
-        Guardian guardian = getOne(id);
-        return guardian.getChildren();
     }
 
     @Override
@@ -54,7 +53,7 @@ public class GuardianServiceImpl implements GuardianService {
         }
 
         if ( !repository.existsById(id) ) {
-            throw new EntityNotFoundException("Guardian does not exist in the database.");
+            throw new ElementNotFoundException("Guardian does not exist in the database.", Guardian.class, id);
         }
 
         guardian.setId(id);
@@ -63,10 +62,17 @@ public class GuardianServiceImpl implements GuardianService {
     }
 
     @Override
-    public Guardian delete(Long id) {
-        Guardian toDelete = getOne(id);
-        repository.delete(toDelete);
-        toDelete.setId(0L);
-        return toDelete;
+    public void delete(Long id) {
+        if (!repository.existsById(id)){
+            // Will notify us if nothing was deleted
+            // todo: throw custom exception
+            throw new ElementNotFoundException("Did not find any guardian to delete.", Guardian.class, id);
+        }
+        repository.deleteById(id);
+    }
+
+    @Override
+    public Set<Guardian> getAllById(Collection<Long> ids) {
+        return new HashSet<>( repository.findAllById(ids) );
     }
 }

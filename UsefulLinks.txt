@@ -1,6 +1,10 @@
 HTTP responses status codes
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
+Tuto REST api and deployment
+https://dzone.com/articles/create-and-publish-your-rest-api-using-spring-boot
+
+
 Ç majuscule : Alt+128
 Espace insécable : Alt+255
 Point médian: Alt+0183

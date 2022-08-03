@@ -17,5 +17,5 @@ public class ChildDTO {
     private LocalDate dateOfBirth;
     private String cleanliness;
     private List<String> allergies;
-    private Set<Long> guardiansId;
+    private Set<GuardianDTO> guardians;
 }

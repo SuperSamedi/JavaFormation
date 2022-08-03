@@ -29,7 +29,6 @@ public class ChildServiceMock implements ChildService {
     }
 
     @Override
-    public Child delete(Long id) {
-        return new Child();
+    public void delete(Long id) {
     }
 }
