@@ -1,5 +1,7 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
+import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
+import brussels.digitalcity.maxdolmans.demorest.exceptions.InvalidReferenceException;
 import brussels.digitalcity.maxdolmans.demorest.mapper.ChildMapper;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -45,19 +48,26 @@ public class ChildController {
         return mapper.toDTO( service.create( mapper.toEntity(form) ) );
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id:[0-9]+}")
     public ChildDTO update(@PathVariable long id, @RequestBody ChildUpdateForm form) {
         Child entity = mapper.toEntity(form);
         Set<Guardian> guardians = new HashSet<>();
+
         if (form.getGuardiansId() != null && !form.getGuardiansId().isEmpty()) {
             guardians = guardianService.getAllById(form.getGuardiansId());
         }
+
         entity.setGuardians(guardians);
         return mapper.toDTO( service.update( id, entity ) );
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id:[0-9]+}")
     public void delete(@PathVariable Long id){
         service.delete(id);
+    }
+
+    @PatchMapping("/patch-guardians/{id:[0-9]+}")
+    public ChildDTO patchGuardians(@PathVariable Long id, @RequestBody Set<Long> newGuardians) {
+        return mapper.toDTO( service.patchGuardians(id, newGuardians) );
     }
 }

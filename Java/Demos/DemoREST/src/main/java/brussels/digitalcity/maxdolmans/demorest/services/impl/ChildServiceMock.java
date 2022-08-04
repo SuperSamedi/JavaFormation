@@ -4,6 +4,7 @@ import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 
 import java.util.List;
+import java.util.Set;
 
 //@Service
 public class ChildServiceMock implements ChildService {
@@ -30,5 +31,10 @@ public class ChildServiceMock implements ChildService {
 
     @Override
     public void delete(Long id) {
+    }
+
+    @Override
+    public Child patchGuardians(Long id, Set<Long> newGuardiansIds) {
+        return null;
     }
 }

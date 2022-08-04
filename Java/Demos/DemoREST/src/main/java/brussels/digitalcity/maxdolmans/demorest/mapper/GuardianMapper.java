@@ -3,7 +3,6 @@ package brussels.digitalcity.maxdolmans.demorest.mapper;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
-import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -45,7 +44,7 @@ public class GuardianMapper {
 
         Guardian guardian = new Guardian();
 
-        guardian.setFirstName(form.getFirstname());
+        guardian.setFirstName(form.getFirstName());
         guardian.setLastName(form.getLastName());
         guardian.setPhoneNumber(form.getPhoneNumber());
         guardian.setAddress(form.getAddress());

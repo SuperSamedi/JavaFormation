@@ -5,7 +5,6 @@ import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
-import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -14,11 +13,9 @@ import java.util.stream.Collectors;
 @Component
 public class ChildMapper {
 
-    private final GuardianService guardianService;
     private final GuardianMapper guardianMapper;
 
-    public ChildMapper(GuardianService guardianService, GuardianMapper guardianMapper) {
-        this.guardianService = guardianService;
+    public ChildMapper(GuardianMapper guardianMapper) {
         this.guardianMapper = guardianMapper;
     }
 
@@ -52,10 +49,11 @@ public class ChildMapper {
 
         Child child = new Child();
 
-        child.setFirstName( form.getFirstname() );
+        child.setFirstName( form.getFirstName() );
         child.setLastName( form.getLastName() );
         child.setDateOfBirth( form.getDateOfBirth() );
         child.setClean( form.isClean() );
+        child.setAllergies(form.getAllergies());
 
         return child;
     }
@@ -73,13 +71,7 @@ public class ChildMapper {
         entity.setDateOfBirth(form.getDateOfBirth());
         entity.setClean(form.isClean());
         entity.setAllergies(form.getAllergies());
-        entity.setGuardians(
-                form.getGuardiansId().stream()
-                        .map(guardianService::getOne)
-                        .collect(Collectors.toSet())
-        );
 
         return entity;
     }
-
 }

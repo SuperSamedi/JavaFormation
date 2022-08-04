@@ -6,10 +6,9 @@ public class ElementNotFoundException extends RuntimeException{
     private final Object forId;
 
     public ElementNotFoundException(Class<?> clazz, Object forId) {
-        super("Cannot find entity { " + clazz.getSimpleName() + "} for id {" + forId + "}");
+        super("Cannot find entity {" + clazz.getSimpleName() + "} at id {" + forId + "}");
         this.clazz = clazz;
         this.forId = forId;
-
     }
 
     public ElementNotFoundException(String message, Class<?> clazz, Object forId) {

@@ -1,21 +1,27 @@
 package brussels.digitalcity.maxdolmans.demorest.services.impl;
 
+import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
+import brussels.digitalcity.maxdolmans.demorest.exceptions.InvalidReferenceException;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
+import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.repositories.ChildRepository;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
+import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
-import javax.persistence.EntityNotFoundException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ChildServiceImpl implements ChildService {
 
     private final ChildRepository repository;
+    private final GuardianService guardianService;
 
-    public ChildServiceImpl(ChildRepository repository) {
+    public ChildServiceImpl(ChildRepository repository, GuardianService guardianService) {
         this.repository = repository;
+        this.guardianService = guardianService;
     }
 
 
@@ -33,7 +39,7 @@ public class ChildServiceImpl implements ChildService {
     @Override
     public Child getOne(Long id) {
         return repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new ElementNotFoundException(Child.class, id));
     }
 
     @Override
@@ -48,7 +54,7 @@ public class ChildServiceImpl implements ChildService {
         }
 
         if ( !repository.existsById(id) ) {
-            throw new EntityNotFoundException("Child does not exist in the database.");
+            throw new ElementNotFoundException(Child.class, id);
         }
 
         child.setId(id);
@@ -62,4 +68,27 @@ public class ChildServiceImpl implements ChildService {
         repository.delete(toDelete);
         toDelete.setId(0L);
     }
+
+    @Override
+    public Child patchGuardians(Long id, Set<Long> newGuardiansIds) {
+        if (newGuardiansIds == null || id == null){
+            throw new IllegalArgumentException("Updated child's ID or their new guardianId set should not be null.");
+        }
+
+        if ( !repository.existsById(id) ) {
+            throw new ElementNotFoundException(Child.class, id);
+        }
+
+        Child toPatch = getOne(id);
+
+        try {
+            toPatch.setGuardians(guardianService.getAllById(newGuardiansIds));
+        }
+        catch (ElementNotFoundException ex) {
+            throw new InvalidReferenceException(new HashSet<>(newGuardiansIds));
+        }
+
+        return repository.save(toPatch);
+    }
+
 }

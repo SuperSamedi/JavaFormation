@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -17,8 +16,18 @@ public class ErrorDTO {
     private HttpMethod method;
     private String path;
     private String message;
-    private HttpStatus status;
-    private Map<String, Object> infos = new HashMap<>();
+    private int status;
+    private Map<String, Object> infos;
+
+    private ErrorDTO(LocalDateTime receivedAt, HttpMethod method, String path, String message, int status, Map<String, Object> infos) {
+        this.receivedAt = receivedAt;
+        this.method = method;
+        this.path = path;
+        this.message = message;
+        this.status = status;
+
+        this.infos = infos == null ? new HashMap<>() : infos ;
+    }
 
     public ErrorDTO addInfo(String key, Object value) {
         infos.put(key, value);
