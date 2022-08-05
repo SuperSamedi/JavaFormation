@@ -5,17 +5,20 @@ import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundExcept
 import brussels.digitalcity.maxdolmans.demorest.exceptions.InvalidReferenceException;
 import brussels.digitalcity.maxdolmans.demorest.mapper.GuardianMapper;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
+import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Person;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
 import brussels.digitalcity.maxdolmans.demorest.repositories.GuardianRepository;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class GuardianServiceImpl implements GuardianService {
@@ -72,17 +75,22 @@ public class GuardianServiceImpl implements GuardianService {
 
     @Override
     public GuardianDTO delete(Long id) {
-        // Will notify us if nothing was deleted
-        if (!repository.existsById(id))
-            throw new ElementNotFoundException("Did not find any guardian to delete at id {" + id + "}.", Guardian.class, id);
-
         Guardian guardian = repository.findById(id)
                 .orElseThrow( () -> new ElementNotFoundException(Guardian.class, id));
 
-        if ( !guardian.getChildren().isEmpty() )
-            throw new DeleteReferencedEntityException(Guardian.class, id);
+        // Catch error if a child still references the guardian.
+        try {
+            repository.delete(guardian);
+        }
+        catch (DataIntegrityViolationException ex) {
+            throw new DeleteReferencedEntityException(
+                    Child.class,
+                    guardian.getChildren().stream()
+                            .map(Person::getId)
+                            .collect(Collectors.toSet())
+            );
+        }
 
-        repository.deleteById(id);
         guardian.setId(null);
 
         return mapper.toDTO(guardian);

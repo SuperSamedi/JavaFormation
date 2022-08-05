@@ -11,6 +11,7 @@ import java.util.Set;
 @Getter @Setter
 @NoArgsConstructor
 public class ChildDTO {
+
     private long id;
     private String firstName;
     private String lastName;
@@ -18,4 +19,5 @@ public class ChildDTO {
     private String cleanliness;
     private List<String> allergies;
     private Set<GuardianDTO> guardians;
+
 }

@@ -6,6 +6,7 @@ import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class ChildController {
 
 
     @PostMapping(path = "/add")
-    public ChildDTO create(@RequestBody ChildInsertForm form) {
+    public ChildDTO create(@Valid @RequestBody ChildInsertForm form) {
         return service.create(form);
     }
 

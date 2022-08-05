@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -16,14 +14,15 @@ public class Guardian extends Person{
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
+    @Embedded
     @Column(nullable = false)
-    private String address;
+    private Address address;
 
     @ManyToMany(mappedBy = "guardians")
     private Set<Child> children;
 
 
-    public Guardian(String firstName, String lastName, String phoneNumber, String address) {
+    public Guardian(String firstName, String lastName, String phoneNumber, Address address) {
         super(firstName, lastName);
         this.phoneNumber = phoneNumber;
         this.address = address;

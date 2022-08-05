@@ -11,11 +11,12 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class GuardianDTO {
+
     private long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String address;
+    private AddressDTO address;
     private Set<ChildDTO> children;
 
     @Data

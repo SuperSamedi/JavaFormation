@@ -31,15 +31,13 @@ public class DataInit implements InitializingBean {
                     "Max",
                     "Dolmans",
                     LocalDate.of(1991, 6, 20),
-                    true,
-                    Arrays.asList("banana", "poison")
+                    true
             ),
             new ChildInsertForm(
                     "Nora",
                     "Dolmans",
                     LocalDate.of(1993, 2, 14),
-                    true,
-                    Arrays.asList("la peur")
+                    true
             )
     );
 

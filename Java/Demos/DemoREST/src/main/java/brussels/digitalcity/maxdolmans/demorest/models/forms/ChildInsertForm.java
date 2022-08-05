@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,10 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 public class ChildInsertForm {
 
+    @NotBlank
+    @Size(max = 255)
     private String firstName;
+
+    @NotBlank
+    @Size(max = 255)
     private String lastName;
+
+    // On peut modifier le message par default
+    @PastOrPresent(message = "Tu es devin ou quoi ?!")
     private LocalDate dateOfBirth;
-    private boolean clean;
-    private List<String> allergies;
+
+    private boolean clean = false;
 
 }
