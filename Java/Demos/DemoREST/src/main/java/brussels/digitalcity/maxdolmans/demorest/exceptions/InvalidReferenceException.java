@@ -6,7 +6,7 @@ public class InvalidReferenceException extends RuntimeException {
     private final List<? extends Object> notFound;
 
     public InvalidReferenceException(List<? extends Object> notFound) {
-        super("The following IDs were not found : " + notFound);
+        super("Error - The following IDs were not found : " + notFound);
         this.notFound = notFound;
     }
 

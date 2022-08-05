@@ -1,20 +1,12 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
-import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
-import brussels.digitalcity.maxdolmans.demorest.exceptions.InvalidReferenceException;
-import brussels.digitalcity.maxdolmans.demorest.mapper.ChildMapper;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
-import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -22,52 +14,39 @@ import java.util.Set;
 public class ChildController {
 
     private final ChildService service;
-    private final ChildMapper mapper;
-    private final GuardianService guardianService;
 
-    public ChildController(ChildService service, ChildMapper mapper, GuardianService guardianService) {
+    public ChildController(ChildService service) {
         this.service = service;
-        this.mapper = mapper;
-        this.guardianService = guardianService;
+    }
+
+
+    @PostMapping(path = "/add")
+    public ChildDTO create(@RequestBody ChildInsertForm form) {
+        return service.create(form);
     }
 
     @GetMapping(path = "/{id:[0-9]+}")
     public ChildDTO getOne(@PathVariable long id) {
-        return mapper.toDTO( service.getOne(id) );
+        return service.getOne(id);
     }
 
     @GetMapping(path = "/all")
     public List<ChildDTO> getAll() {
-        return service.getAll().stream()
-                .map( mapper::toDTO )
-                .toList();
-    }
-
-    @PostMapping(path = "/add")
-    public ChildDTO create(@RequestBody ChildInsertForm form) {
-        return mapper.toDTO( service.create( mapper.toEntity(form) ) );
+        return service.getAll();
     }
 
     @PutMapping("/{id:[0-9]+}")
     public ChildDTO update(@PathVariable long id, @RequestBody ChildUpdateForm form) {
-        Child entity = mapper.toEntity(form);
-        Set<Guardian> guardians = new HashSet<>();
-
-        if (form.getGuardiansId() != null && !form.getGuardiansId().isEmpty()) {
-            guardians = guardianService.getAllById(form.getGuardiansId());
-        }
-
-        entity.setGuardians(guardians);
-        return mapper.toDTO( service.update( id, entity ) );
+        return service.update(id, form);
     }
 
     @DeleteMapping("/{id:[0-9]+}")
-    public void delete(@PathVariable Long id){
-        service.delete(id);
+    public ChildDTO delete(@PathVariable Long id){
+        return service.delete(id);
     }
 
     @PatchMapping("/patch-guardians/{id:[0-9]+}")
     public ChildDTO patchGuardians(@PathVariable Long id, @RequestBody Set<Long> newGuardians) {
-        return mapper.toDTO( service.patchGuardians(id, newGuardians) );
+        return service.patchGuardians(id, newGuardians);
     }
 }

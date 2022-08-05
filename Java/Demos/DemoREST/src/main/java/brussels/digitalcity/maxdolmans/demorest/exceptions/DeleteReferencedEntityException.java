@@ -5,7 +5,7 @@ public class DeleteReferencedEntityException extends RuntimeException {
     private final Object forId;
 
     public DeleteReferencedEntityException(Class<?> clazz, Object forId) {
-        super("Deletion impossible. Entity {" + clazz.getSimpleName() + "} at id {" + forId + "} is still dependent on other entities. Remove the dependencies before trying to delete.");
+        super("Error - Deletion impossible. Entity {" + clazz.getSimpleName() + "} at id {" + forId + "} is still referenced by other entities. Remove the references before trying to delete.");
         this.clazz = clazz;
         this.forId = forId;
     }

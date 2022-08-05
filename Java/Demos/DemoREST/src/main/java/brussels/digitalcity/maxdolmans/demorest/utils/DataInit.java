@@ -2,6 +2,9 @@ package brussels.digitalcity.maxdolmans.demorest.utils;
 
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
 import brussels.digitalcity.maxdolmans.demorest.services.impl.ChildServiceImpl;
 import brussels.digitalcity.maxdolmans.demorest.services.impl.GuardianServiceImpl;
 import org.springframework.beans.factory.InitializingBean;
@@ -23,15 +26,15 @@ public class DataInit implements InitializingBean {
         this.guardianServiceImpl = guardianServiceImpl;
     }
 
-    private List<Child> children = Arrays.asList(
-            new Child(
+    private List<ChildInsertForm> children = Arrays.asList(
+            new ChildInsertForm(
                     "Max",
                     "Dolmans",
                     LocalDate.of(1991, 6, 20),
                     true,
                     Arrays.asList("banana", "poison")
             ),
-            new Child(
+            new ChildInsertForm(
                     "Nora",
                     "Dolmans",
                     LocalDate.of(1993, 2, 14),
@@ -40,8 +43,8 @@ public class DataInit implements InitializingBean {
             )
     );
 
-    private List<Guardian> guardians = Arrays.asList(
-            new Guardian(
+    private List<GuardianForm> guardians = Arrays.asList(
+            new GuardianForm(
                     "Christine",
                     "Herinckx",
                     "063424786",
@@ -49,7 +52,7 @@ public class DataInit implements InitializingBean {
                             "6723 Habay-la-Vieille"
             ),
 
-            new Guardian(
+            new GuardianForm(
                     "Michel",
                     "Dolmans",
                     "063424786",
