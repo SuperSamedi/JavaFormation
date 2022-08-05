@@ -1,7 +1,9 @@
 package brussels.digitalcity.maxdolmans.demorest.utils;
 
+import brussels.digitalcity.maxdolmans.demorest.models.entities.Address;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.AddressForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
@@ -46,16 +48,14 @@ public class DataInit implements InitializingBean {
                     "Christine",
                     "Herinckx",
                     "063424786",
-                    "1 rue Abraham Gilson " +
-                            "6723 Habay-la-Vieille"
+                    new AddressForm("Rue Abraham Gilson",1, 6723, "Habay-la-Vieille")
             ),
 
             new GuardianForm(
                     "Michel",
                     "Dolmans",
                     "063424786",
-                    "1 rue Abraham Gilson " +
-                            "6723 Habay-la-Vieille"
+                    new AddressForm("Rue Abraham Gilson",1, 6723, "Habay-la-Vieille")
             )
     );
 

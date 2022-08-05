@@ -1,14 +1,14 @@
 package brussels.digitalcity.maxdolmans.demorest.mapper;
 
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.AddressDTO;
-import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Address;
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
-import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
-import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
+import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.AddressForm;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,53 +20,30 @@ public class AddressMapper {
             return null;
         }
 
-        Set<GuardianDTO> dtos = entity.getGuardians().stream()
-                .map(guardianMapper::toDTO)
-                .collect(Collectors.toSet());
+        AddressDTO dto = new AddressDTO();
 
-        ChildDTO dto = new ChildDTO();
-
-        dto.setId(entity.getId());
-        dto.setFirstName(entity.getFirstName());
-        dto.setLastName(entity.getLastName());
-        dto.setDateOfBirth(entity.getDateOfBirth());
-        dto.setCleanliness(entity.isClean() ? "clean" : "not clean");
-        dto.setAllergies(entity.getAllergies());
-        dto.setGuardians(dtos);
+        dto.setStreet(entity.getStreet());
+        dto.setBuildingNumber(entity.getBuildingNumber());
+        dto.setApartmentCode(entity.getApartmentCode());
+        dto.setCityCode(entity.getCityCode());
+        dto.setCity(entity.getCity());
 
         return dto;
     }
 
-    public Child toEntity(ChildInsertForm form) {
+    public Address toEntity(AddressForm form) {
         if (form == null) {
             return null;
         }
 
-        Child child = new Child();
+        Address address = new Address();
 
-        child.setFirstName( form.getFirstName() );
-        child.setLastName( form.getLastName() );
-        child.setDateOfBirth( form.getDateOfBirth() );
-        child.setClean( form.isClean() );
-        child.setAllergies(form.getAllergies());
+        address.setStreet(form.getStreet());
+        address.setBuildingNumber(form.getBuildingNumber());
+        address.setApartmentCode(form.getApartmentCode());
+        address.setCityCode(form.getCityCode());
+        address.setCity(form.getCity());
 
-        return child;
-    }
-
-    // On ne mappe pas l'id ou les guardians
-    public Child toEntity(ChildUpdateForm form) {
-        if (form == null) {
-            return null;
-        }
-
-        Child entity = new Child();
-
-        entity.setFirstName(form.getFirstName());
-        entity.setLastName(form.getLastName());
-        entity.setDateOfBirth(form.getDateOfBirth());
-        entity.setClean(form.isClean());
-        entity.setAllergies(form.getAllergies());
-
-        return entity;
+        return address;
     }
 }

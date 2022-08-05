@@ -53,7 +53,6 @@ public class ChildMapper {
         child.setLastName( form.getLastName() );
         child.setDateOfBirth( form.getDateOfBirth() );
         child.setClean( form.isClean() );
-        child.setAllergies(form.getAllergies());
 
         return child;
     }

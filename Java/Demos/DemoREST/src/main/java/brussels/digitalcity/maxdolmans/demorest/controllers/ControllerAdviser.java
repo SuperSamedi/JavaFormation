@@ -1,5 +1,6 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
+import brussels.digitalcity.maxdolmans.demorest.exceptions.BadAddressDataException;
 import brussels.digitalcity.maxdolmans.demorest.exceptions.DeleteReferencedEntityException;
 import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
 import brussels.digitalcity.maxdolmans.demorest.exceptions.InvalidReferenceException;
@@ -58,6 +59,20 @@ public class ControllerAdviser {
                                 .path(request.getRequestURL().toString())
                                 .build()
                                 .addInfo("Invalid references", ex.getNotFound())
+                );
+    }
+
+    @ExceptionHandler(BadAddressDataException.class)
+    public ResponseEntity<ErrorDTO> handleException(BadAddressDataException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(
+                        ErrorDTO.builder()
+                                .message(ex.getMessage())
+                                .receivedAt(LocalDateTime.now())
+                                .status(422)
+                                .method(HttpMethod.resolve(request.getMethod()))
+                                .path(request.getRequestURL().toString())
+                                .build()
                 );
     }
 }

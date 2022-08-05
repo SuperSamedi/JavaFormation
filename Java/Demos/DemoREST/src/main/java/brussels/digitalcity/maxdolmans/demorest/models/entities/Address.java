@@ -29,6 +29,13 @@ public class Address {
     private String city;
 
 
+    public Address(String street, int buildingNumber, int cityCode, String city) {
+        this.street = street;
+        this.buildingNumber = buildingNumber;
+        this.cityCode = cityCode;
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return "Address{" +

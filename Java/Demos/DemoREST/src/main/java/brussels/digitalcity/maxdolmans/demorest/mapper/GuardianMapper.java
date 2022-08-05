@@ -12,6 +12,12 @@ import java.util.stream.Collectors;
 @Component
 public class GuardianMapper {
 
+    private final AddressMapper addressMapper;
+
+    public GuardianMapper(AddressMapper addressMapper) {
+        this.addressMapper = addressMapper;
+    }
+
     public GuardianDTO toDTO(Guardian entity) {
         if (entity == null) {
             return null;
@@ -47,7 +53,7 @@ public class GuardianMapper {
         guardian.setFirstName(form.getFirstName());
         guardian.setLastName(form.getLastName());
         guardian.setPhoneNumber(form.getPhoneNumber());
-        guardian.setAddress(form.getAddress());
+        guardian.setAddress( addressMapper.toEntity(form.getAddress()) );
 
         return guardian;
     }

@@ -28,6 +28,6 @@ public class GuardianForm {
 
     @Embedded
     @NotBlank
-    private Address address;
+    private AddressForm address;
 
 }

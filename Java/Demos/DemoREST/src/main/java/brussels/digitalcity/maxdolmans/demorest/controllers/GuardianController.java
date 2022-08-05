@@ -1,11 +1,14 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
+import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.AddressForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/guardian")
@@ -36,6 +39,11 @@ public class GuardianController {
     @PutMapping("/{id}")
     public GuardianDTO update(@PathVariable long id, @RequestBody GuardianForm form) {
         return service.update(id, form);
+    }
+
+    @PatchMapping("/patch-address/{id:[0-9]+}")
+    public GuardianDTO patchAddress(@PathVariable Long id, @RequestBody AddressForm newAddress) {
+        return service.patchAddress(id, newAddress);
     }
 
     @DeleteMapping("/{id}")

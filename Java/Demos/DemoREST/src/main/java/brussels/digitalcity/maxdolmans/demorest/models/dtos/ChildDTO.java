@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class ChildDTO {
 
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
