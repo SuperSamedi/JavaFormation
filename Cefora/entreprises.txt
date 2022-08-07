@@ -1,0 +1,4 @@
+-infrabel
+-innetum - Consultance
+-exellis - Consultance
+-abakus - Consultance - { belgique - allemagne - luxembourg } - SIE societé intercommunale des eaux, spw, commission européenne - python odoo framework javascript
