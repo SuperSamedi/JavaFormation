@@ -1,5 +1,6 @@
 package brussels.digitalcity.maxdolmans.demorest.models.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,21 +11,15 @@ import java.util.Set;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Guardian extends Person{
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @Embedded
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "address_id")
     private Address address;
 
     @ManyToMany(mappedBy = "guardians")
     private Set<Child> children;
-
-
-    public Guardian(String firstName, String lastName, String phoneNumber, Address address) {
-        super(firstName, lastName);
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
 }

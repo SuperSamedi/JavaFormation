@@ -1,14 +1,13 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
-import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AddressForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/guardian")
@@ -22,7 +21,7 @@ public class GuardianController {
 
 
     @PostMapping(path = "/add")
-    public GuardianDTO create(@RequestBody GuardianForm form) {
+    public GuardianDTO create(@Valid @RequestBody GuardianForm form) {
         return service.create(form);
     }
 
@@ -37,17 +36,22 @@ public class GuardianController {
     }
 
     @PutMapping("/{id}")
-    public GuardianDTO update(@PathVariable long id, @RequestBody GuardianForm form) {
+    public GuardianDTO update(@PathVariable long id, @Valid @RequestBody GuardianForm form) {
         return service.update(id, form);
     }
 
     @PatchMapping("/patch-address/{id:[0-9]+}")
-    public GuardianDTO patchAddress(@PathVariable Long id, @RequestBody AddressForm newAddress) {
+    public GuardianDTO patchAddress(@PathVariable Long id, @Valid @RequestBody AddressForm newAddress) {
         return service.patchAddress(id, newAddress);
     }
 
     @DeleteMapping("/{id}")
     public GuardianDTO delete(@PathVariable Long id) {
         return service.delete(id);
+    }
+
+    @GetMapping(params = "city")
+    public List<GuardianDTO> getAllByCity(@RequestParam String city) {
+        return service.getAllFromCity(city);
     }
 }

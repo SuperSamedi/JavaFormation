@@ -38,11 +38,11 @@ public class AddressMapper {
 
         Address address = new Address();
 
-        address.setStreet(form.getStreet());
+        address.setStreet(form.getStreet().trim().replaceAll("\\s{2,}", ""));
         address.setBuildingNumber(form.getBuildingNumber());
-        address.setApartmentCode(form.getApartmentCode());
+        address.setApartmentCode(form.getApartmentCode().trim().replaceAll("\\s{2,}", ""));
         address.setCityCode(form.getCityCode());
-        address.setCity(form.getCity());
+        address.setCity(form.getCity().trim().replaceAll("\\s{2,}", ""));
 
         return address;
     }

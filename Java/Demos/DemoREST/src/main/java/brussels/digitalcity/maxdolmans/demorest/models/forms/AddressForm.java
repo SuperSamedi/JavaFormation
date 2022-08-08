@@ -1,15 +1,13 @@
 package brussels.digitalcity.maxdolmans.demorest.models.forms;
 
+import brussels.digitalcity.maxdolmans.demorest.models.entities.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Embeddable
 @Getter @Setter
@@ -21,7 +19,7 @@ public class AddressForm {
     @Size(max = 255)
     private String street;
 
-    @Positive
+    @Positive // wroks as a not blank as well as int default value = 0
     private int buildingNumber;
 
     private String apartmentCode;
@@ -29,6 +27,8 @@ public class AddressForm {
     @Positive
     @NotBlank
     @Pattern(regexp = "[0-9]{4}")
+    @Min(1000)
+    @Max(9999)
     private int cityCode;
 
     @NotBlank
@@ -40,5 +40,17 @@ public class AddressForm {
         this.buildingNumber = buildingNumber;
         this.cityCode = cityCode;
         this.city = city;
+    }
+
+    public Address toEntity() {
+        Address entity = new Address();
+
+        entity.setStreet(this.street);
+        entity.setBuildingNumber(this.buildingNumber);
+        entity.setApartmentCode(this.apartmentCode);
+        entity.setCityCode(this.cityCode);
+        entity.setCity(this.city);
+
+        return entity;
     }
 }

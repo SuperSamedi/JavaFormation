@@ -37,7 +37,7 @@ public class GuardianMapper {
         dto.setFirstName(entity.getFirstName());
         dto.setLastName(entity.getLastName());
         dto.setPhoneNumber(entity.getPhoneNumber());
-        dto.setAddress(entity.getAddress());
+        dto.setAddress( addressMapper.toDTO( entity.getAddress() ) );
         dto.setChildren(children);
 
         return dto;

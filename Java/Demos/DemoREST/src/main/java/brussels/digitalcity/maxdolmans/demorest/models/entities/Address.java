@@ -7,11 +7,15 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Embeddable
+@Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String street;

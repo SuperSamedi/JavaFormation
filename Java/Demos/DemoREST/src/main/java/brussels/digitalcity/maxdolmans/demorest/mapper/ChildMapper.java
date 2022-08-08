@@ -69,7 +69,11 @@ public class ChildMapper {
         entity.setLastName(form.getLastName());
         entity.setDateOfBirth(form.getDateOfBirth());
         entity.setClean(form.isClean());
-        entity.setAllergies(form.getAllergies());
+        entity.setAllergies(form.getAllergies().stream()
+                .map(String::trim)
+                .map( (s) -> s.replaceAll("\\s{2,}", ""))
+                .collect(Collectors.toList())
+        );
 
         return entity;
     }

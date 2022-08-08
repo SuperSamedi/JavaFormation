@@ -16,7 +16,7 @@ public class GuardianDTO {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private Address address;
+    private AddressDTO address;
     private Set<ChildDTO> children;
 
     @Data

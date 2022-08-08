@@ -37,7 +37,7 @@ public class ChildController {
     }
 
     @PutMapping("/{id:[0-9]+}")
-    public ChildDTO update(@PathVariable long id, @RequestBody ChildUpdateForm form) {
+    public ChildDTO update(@PathVariable long id, @Valid @RequestBody ChildUpdateForm form) {
         return service.update(id, form);
     }
 
@@ -49,5 +49,10 @@ public class ChildController {
     @PatchMapping("/patch-guardians/{id:[0-9]+}")
     public ChildDTO patchGuardians(@PathVariable Long id, @RequestBody Set<Long> newGuardians) {
         return service.patchGuardians(id, newGuardians);
+    }
+
+    @GetMapping(value = "/allergy")
+    public List<ChildDTO> getAllWithAllergy(@RequestParam(required = true) String allergy) {
+        return service.getAllWithAllergy(allergy);
     }
 }

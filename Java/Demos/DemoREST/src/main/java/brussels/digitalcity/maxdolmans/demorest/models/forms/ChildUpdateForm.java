@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Required;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ public class ChildUpdateForm {
     private List<String> allergies;
 
     @NotNull
-    private Set<Long> guardiansId;
+    private Set<Long> guardiansId = new HashSet<>();
 
     // Remplacement pour le mapper
 //    public Child toEntity() {

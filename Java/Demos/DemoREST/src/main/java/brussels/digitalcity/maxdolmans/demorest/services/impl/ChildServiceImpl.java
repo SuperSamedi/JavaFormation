@@ -1,6 +1,7 @@
 package brussels.digitalcity.maxdolmans.demorest.services.impl;
 
 import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
+import brussels.digitalcity.maxdolmans.demorest.exceptions.FormValidationException;
 import brussels.digitalcity.maxdolmans.demorest.mapper.ChildMapper;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
@@ -11,12 +12,14 @@ import brussels.digitalcity.maxdolmans.demorest.repositories.ChildRepository;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class ChildServiceImpl implements ChildService {
@@ -66,15 +69,26 @@ public class ChildServiceImpl implements ChildService {
         if ( !repository.existsById(id) )
             throw new ElementNotFoundException(Child.class, id);
 
-        form.setAllergies(
-                form.getAllergies().stream()
-                        .map(String::trim)
-                        .map( (s) -> s.replaceAll("\\s{2,}", " "))
-                        .collect(Collectors.toList())
-        );
+        MultiValueMap<String, String> validationErrors = null;
+
+        if( form.getAllergies().stream()
+                .anyMatch( (allergy) -> allergy == null || allergy.isBlank() || allergy.isEmpty() ) ) {
+            validationErrors = new LinkedMultiValueMap<>();
+            validationErrors.add("allergies", "some allergies are invalids");
+        }
 
         Child child = mapper.toEntity(form);
         Set<Guardian> guardians = guardianService.getAllById(form.getGuardiansId());
+
+        if (guardians.size() < form.getGuardiansId().size()) {
+            validationErrors = validationErrors == null ? new LinkedMultiValueMap<>() : validationErrors;
+            validationErrors.add("guardians", "some ids don't relate to a guardian entity.");
+        }
+
+        if (validationErrors != null) {
+            throw new FormValidationException(validationErrors);
+        }
+
         child.setId(id);
         child.setGuardians(guardians);
         child = repository.save(child);
@@ -115,4 +129,12 @@ public class ChildServiceImpl implements ChildService {
 
         return mapper.toDTO(child);
     }
+
+    @Override
+    public List<ChildDTO> getAllWithAllergy(String allergy) {
+        return repository.findByAllergiesContains(allergy).stream()
+                .map(mapper::toDTO)
+                .toList();
+    }
+
 }

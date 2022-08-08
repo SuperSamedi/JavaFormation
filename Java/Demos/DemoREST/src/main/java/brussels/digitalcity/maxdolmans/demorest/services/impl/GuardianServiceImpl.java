@@ -1,6 +1,5 @@
 package brussels.digitalcity.maxdolmans.demorest.services.impl;
 
-import brussels.digitalcity.maxdolmans.demorest.exceptions.BadAddressDataException;
 import brussels.digitalcity.maxdolmans.demorest.exceptions.DeleteReferencedEntityException;
 import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
 import brussels.digitalcity.maxdolmans.demorest.exceptions.InvalidReferenceException;
@@ -12,9 +11,12 @@ import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Person;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AddressForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
+import brussels.digitalcity.maxdolmans.demorest.repositories.AddressRepository;
 import brussels.digitalcity.maxdolmans.demorest.repositories.GuardianRepository;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,11 +32,13 @@ public class GuardianServiceImpl implements GuardianService {
     private final GuardianRepository repository;
     private final GuardianMapper mapper;
     private final AddressMapper addressMapper;
+    private final AddressRepository addressRepository;
 
-    public GuardianServiceImpl(GuardianRepository repository, GuardianMapper mapper, AddressMapper addressMapper) {
+    public GuardianServiceImpl(GuardianRepository repository, GuardianMapper mapper, AddressMapper addressMapper, AddressRepository addressRepository) {
         this.repository = repository;
         this.mapper = mapper;
         this.addressMapper = addressMapper;
+        this.addressRepository = addressRepository;
     }
 
 
@@ -44,12 +48,18 @@ public class GuardianServiceImpl implements GuardianService {
             throw new IllegalArgumentException("Error - Trying to insert a NULL entity.");
         }
 
-        validateAddress(form.getAddress());
-
         Guardian guardian = mapper.toEntity(form);
-        guardian = repository.save(guardian);
 
-        return mapper.toDTO(guardian);
+        // Example find all db lines that match the entity give
+        ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnoreCase();
+        addressRepository.findAll( Example.of( guardian.getAddress(), matcher ) ).stream()
+                .findFirst()
+                .ifPresentOrElse(
+                        guardian::setAddress,
+                        () -> guardian.setAddress( addressRepository.save( guardian.getAddress() ) )
+                );
+
+        return mapper.toDTO(repository.save(guardian));
     }
 
     @Override
@@ -94,8 +104,6 @@ public class GuardianServiceImpl implements GuardianService {
         if (!repository.existsById(id))
             throw new ElementNotFoundException("Guardian does not exist in the database.", Guardian.class, id);
 
-        validateAddress(form.getAddress());
-
         Guardian guardian = mapper.toEntity(form);
         guardian.setId(id);
         guardian = repository.save(guardian);
@@ -108,8 +116,6 @@ public class GuardianServiceImpl implements GuardianService {
         if (id == null || newAddress == null) {
             throw new IllegalArgumentException("Error - Updated address or their guardianId should not be null.");
         }
-
-        validateAddress(newAddress);
 
         Guardian guardian = repository.findById(id)
                 .orElseThrow(() -> new ElementNotFoundException(Child.class, id));
@@ -143,37 +149,10 @@ public class GuardianServiceImpl implements GuardianService {
         return mapper.toDTO(guardian);
     }
 
-    public void validateAddress(AddressForm form) {
-        if (form == null)
-            throw new IllegalArgumentException("Error - form can't be null");
-
-        if (form.getStreet() == null
-                || form.getCity() == null
-                || form.getBuildingNumber() <= 0
-                || form.getCityCode() > 9999
-                || form.getCityCode() < 1000) {
-            throw new BadAddressDataException();
-        }
-
-        form.setStreet(
-                form.getStreet()
-                        .trim()
-                        .replaceAll("\\s{2,}", " ")
-        );
-
-        if (form.getApartmentCode() != null) {
-            form.setApartmentCode(
-                    form.getApartmentCode()
-                            .trim()
-                            .replaceAll("\\s{2,}", " ")
-            );
-        }
-
-        form.setCity(
-                form.getCity()
-                        .trim()
-                        .replaceAll("\\s{2,}", " ")
-        );
+    @Override
+    public List<GuardianDTO> getAllFromCity(String city) {
+        return repository.findAllByAddress_CityAndChildrenNotEmpty(city).stream()
+                .map(mapper::toDTO)
+                .toList();
     }
-
 }

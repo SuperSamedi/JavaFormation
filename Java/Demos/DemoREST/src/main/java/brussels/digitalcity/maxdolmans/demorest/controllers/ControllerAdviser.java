@@ -1,9 +1,6 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
-import brussels.digitalcity.maxdolmans.demorest.exceptions.BadAddressDataException;
-import brussels.digitalcity.maxdolmans.demorest.exceptions.DeleteReferencedEntityException;
-import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
-import brussels.digitalcity.maxdolmans.demorest.exceptions.InvalidReferenceException;
+import brussels.digitalcity.maxdolmans.demorest.exceptions.*;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.ErrorDTO;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -73,6 +70,21 @@ public class ControllerAdviser {
                                 .method(HttpMethod.resolve(request.getMethod()))
                                 .path(request.getRequestURL().toString())
                                 .build()
+                );
+    }
+
+    @ExceptionHandler(FormValidationException.class)
+    public ResponseEntity<ErrorDTO> handleException(FormValidationException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ErrorDTO.builder()
+                                .message(ex.getMessage().toString())
+                                .receivedAt(LocalDateTime.now())
+                                .status(400)
+                                .method(HttpMethod.resolve(request.getMethod()))
+                                .path(request.getRequestURL().toString())
+                                .build()
+                                .addInfo("error", ex.getMessage())
                 );
     }
 }
