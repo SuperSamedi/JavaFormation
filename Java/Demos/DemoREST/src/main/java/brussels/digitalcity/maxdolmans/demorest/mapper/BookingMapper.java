@@ -8,6 +8,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookingMapper {
 
+    private final ChildMapper childMapper;
+    private final GuardianMapper guardianMapper;
+
+    public BookingMapper(ChildMapper childMapper, GuardianMapper guardianMapper) {
+        this.childMapper = childMapper;
+        this.guardianMapper = guardianMapper;
+    }
+
+
     public BookingDTO toDTO(Booking entity) {
         if (entity == null) {
             return null;
@@ -16,11 +25,13 @@ public class BookingMapper {
         BookingDTO dto = new BookingDTO();
 
         dto.setId( entity.getId() );
-        dto.setConcernedChildId( entity.getConcernedChildId() );
+        dto.setConcernedChild( childMapper.toDTO( entity.getConcernedChild() ) );
+        dto.setDroppingDate( entity.getDroppingDate() );
         dto.setDroppingTime( entity.getDroppingTime() );
-        dto.setDroppingGuardianId(entity.getDroppingGuardianId() );
+        dto.setDroppingGuardian( guardianMapper.toDTO( entity.getDroppingGuardian() ) );
+        dto.setPickupDate( entity.getPickupDate() );
         dto.setPickupTime( entity.getPickupTime() );
-        dto.setPickupGuardianId(entity.getPickupGuardianId() );
+        dto.setPickupGuardian( guardianMapper.toDTO( entity.getPickupGuardian() ) );
         dto.setCancelled( entity.isCancelled() );
         dto.setCancellationMotive( entity.getCancellationMotive() );
 
@@ -34,13 +45,11 @@ public class BookingMapper {
 
         Booking booking = new Booking();
 
-        booking.setConcernedChildId( form.getConcernedChildId() );
+        booking.setDroppingDate( form.getDroppingDate() );
         booking.setDroppingTime( form.getDroppingTime() );
-        booking.setDroppingGuardianId( form.getDroppingGuardianId() );
+        booking.setPickupDate( form.getPickupDate() );
         booking.setPickupTime( form.getPickupTime() );
-        booking.setPickupGuardianId( form.getPickupGuardianId() );
-        booking.setCancelled( form.isCancelled() );
-        booking.setCancellationMotive( form.getCancellationMotive() );
+
         return booking;
     }
 }

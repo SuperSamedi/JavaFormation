@@ -77,14 +77,16 @@ public class GuardianServiceImpl implements GuardianService {
     }
 
     @Override
-    public Set<Guardian> getAllById(Collection<Long> ids) {
+    public Set<GuardianDTO> getAllById(Collection<Long> ids) {
         // .findAllById Returns the entities it can find.
         // Verifying the size of the returned collection to know if there were bad ids.
-        List<Guardian> guardians = repository.findAllById(ids);
+        List<GuardianDTO> guardians = repository.findAllById(ids).stream()
+                .map(mapper::toDTO)
+                .toList();
 
         if (guardians.size() < ids.size()) {
             List<Long> found = guardians.stream()
-                    .map(Person::getId)
+                    .map(GuardianDTO::getId)
                     .toList();
             List<Long> notFound = ids.stream()
                     .filter(id -> !found.contains(id))

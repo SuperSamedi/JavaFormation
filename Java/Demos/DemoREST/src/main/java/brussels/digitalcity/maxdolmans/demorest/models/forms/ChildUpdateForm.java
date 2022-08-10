@@ -2,7 +2,6 @@ package brussels.digitalcity.maxdolmans.demorest.models.forms;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;

@@ -9,6 +9,7 @@ import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
 import brussels.digitalcity.maxdolmans.demorest.repositories.ChildRepository;
+import brussels.digitalcity.maxdolmans.demorest.repositories.GuardianRepository;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,11 +27,13 @@ public class ChildServiceImpl implements ChildService {
     private final ChildRepository repository;
     private final GuardianService guardianService;
     private final ChildMapper mapper;
+    private final GuardianRepository guardianRepository;
 
-    public ChildServiceImpl(ChildRepository repository, GuardianService guardianService, ChildMapper mapper) {
+    public ChildServiceImpl(ChildRepository repository, GuardianService guardianService, ChildMapper mapper, GuardianRepository guardianRepository) {
         this.repository = repository;
         this.guardianService = guardianService;
         this.mapper = mapper;
+        this.guardianRepository = guardianRepository;
     }
 
 
@@ -78,7 +80,7 @@ public class ChildServiceImpl implements ChildService {
         }
 
         Child child = mapper.toEntity(form);
-        Set<Guardian> guardians = guardianService.getAllById(form.getGuardiansId());
+        List<Guardian> guardians = guardianRepository.findAllById(form.getGuardiansId());
 
         if (guardians.size() < form.getGuardiansId().size()) {
             validationErrors = validationErrors == null ? new LinkedMultiValueMap<>() : validationErrors;
@@ -90,7 +92,7 @@ public class ChildServiceImpl implements ChildService {
         }
 
         child.setId(id);
-        child.setGuardians(guardians);
+        child.setGuardians(new HashSet<>(guardians));
         child = repository.save(child);
 
         return mapper.toDTO(child);
@@ -123,7 +125,7 @@ public class ChildServiceImpl implements ChildService {
         Child child = repository.findById(id)
                 .orElseThrow( () -> new ElementNotFoundException(Child.class, id));
 
-        Set<Guardian> guardians = guardianService.getAllById(newGuardiansIds);
+        List<Guardian> guardians = guardianRepository.findAllById(newGuardiansIds);
         child.setGuardians(new HashSet<>(guardians));
         child = repository.save(child);
 

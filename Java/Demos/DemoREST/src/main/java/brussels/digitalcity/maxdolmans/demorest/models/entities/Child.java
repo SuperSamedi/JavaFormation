@@ -23,7 +23,7 @@ public class Child extends Person{
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> allergies;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "tutoring",
         joinColumns = @JoinColumn(name = "child_id"),

@@ -1,6 +1,5 @@
 package brussels.digitalcity.maxdolmans.demorest.models.dtos;
 
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Address;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import lombok.*;
 

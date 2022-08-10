@@ -6,19 +6,25 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    List<Booking> findByDroppingTimeBetween(LocalDateTime dateStart, LocalDateTime dateEnd);
+    // Get all future bookings of child
+//    @Query("SELECT b FROM Booking b WHERE b.id = ?1 AND b.droppingTime > ?2")
+    List<Booking> findByConcernedChildIdAndDroppingDateAfter(Long concernedChildId, LocalDate today);
 
-    List<Booking> findByConcernedChildIdAndDroppingTimeAfter(Long concernedChildId, LocalDateTime today);
-
+    // Cancel booking
     @Modifying
     @Query("UPDATE Booking b SET b.cancelled = ?2, b.cancellationMotive = ?3 WHERE b.id = ?1")
     void cancel(Long id, boolean isCancelled, String motive);
 
-    List<Booking> findBookingsByDroppingTimeAfterAndDroppingTimeBefore(LocalDateTime today, LocalDateTime endOfMonth);
+    // Get all bookings of the remaining of the month
+    List<Booking> findBookingsByDroppingDateAfterAndDroppingDateBefore(LocalDate today, LocalDate endOfMonth);
+
+    // Get all bookings of a particular day
+    List<Booking> findBookingsByDroppingDate(LocalDate droppingDate);
 }

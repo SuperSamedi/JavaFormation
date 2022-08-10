@@ -20,6 +20,6 @@ public class Guardian extends Person{
     @JoinColumn(nullable = false, name = "address_id")
     private Address address;
 
-    @ManyToMany(mappedBy = "guardians")
+    @ManyToMany(mappedBy = "guardians", fetch = FetchType.EAGER)
     private Set<Child> children;
 }

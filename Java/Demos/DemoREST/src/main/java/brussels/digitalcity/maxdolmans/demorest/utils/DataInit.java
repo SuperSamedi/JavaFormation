@@ -1,34 +1,35 @@
 package brussels.digitalcity.maxdolmans.demorest.utils;
 
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Address;
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
-import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AddressForm;
+import brussels.digitalcity.maxdolmans.demorest.models.forms.BookingForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
-import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
-import brussels.digitalcity.maxdolmans.demorest.services.impl.ChildServiceImpl;
-import brussels.digitalcity.maxdolmans.demorest.services.impl.GuardianServiceImpl;
+import brussels.digitalcity.maxdolmans.demorest.services.BookingService;
+import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
+import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class DataInit implements InitializingBean {
 
-    private final ChildServiceImpl childServiceImpl;
-    private final GuardianServiceImpl guardianServiceImpl;
+    private final ChildService childService;
+    private final GuardianService guardianService;
+    private final BookingService bookingService;
 
-
-    public DataInit(ChildServiceImpl childServiceImpl, GuardianServiceImpl guardianServiceImpl) {
-        this.childServiceImpl = childServiceImpl;
-        this.guardianServiceImpl = guardianServiceImpl;
+    public DataInit(ChildService childService, GuardianService guardianService, BookingService bookingService) {
+        this.childService = childService;
+        this.guardianService = guardianService;
+        this.bookingService = bookingService;
     }
 
-    private List<ChildInsertForm> children = Arrays.asList(
+
+    private final List<ChildInsertForm> children = Arrays.asList(
             new ChildInsertForm(
                     "Max",
                     "Dolmans",
@@ -43,7 +44,7 @@ public class DataInit implements InitializingBean {
             )
     );
 
-    private List<GuardianForm> guardians = Arrays.asList(
+    private final List<GuardianForm> guardians = Arrays.asList(
             new GuardianForm(
                     "Christine",
                     "Herinckx",
@@ -59,11 +60,22 @@ public class DataInit implements InitializingBean {
             )
     );
 
+    private final List <BookingForm> bookings = Arrays.asList(
+            new BookingForm(
+                    1L,
+                    LocalDateTime.of(2022, 8, 30, 8, 15),
+                    3L,
+                    LocalDateTime.of(2022, 8, 30, 17, 15),
+                    3L
+            )
+    );
+
     @Override
     public void afterPropertiesSet() throws Exception {
         try {
-            children.forEach(childServiceImpl::create);
-            guardians.forEach(guardianServiceImpl::create);
+            children.forEach(childService::create);
+            guardians.forEach(guardianService::create);
+            bookings.forEach(bookingService::create);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }

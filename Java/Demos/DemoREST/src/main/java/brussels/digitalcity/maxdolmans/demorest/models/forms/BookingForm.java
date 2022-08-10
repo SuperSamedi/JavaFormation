@@ -6,35 +6,39 @@ import lombok.Setter;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter @Setter
 @AllArgsConstructor
 public class BookingForm {
 
     @Valid
-    @NotBlank
+    @NotNull
     private Long concernedChildId;
 
     @Future
-    @NotBlank
-    private LocalDateTime droppingTime;
+    @NotNull
+    private LocalDate droppingDate;
+
+    @NotNull
+    private LocalTime droppingTime;
 
     @Valid
-    @NotBlank
+    @NotNull
     private Long droppingGuardianId;
 
     @Future
-    @NotBlank
-    private LocalDateTime pickupTime;
+    @NotNull
+    private LocalDate pickupDate;
+
+    @NotNull
+    private LocalTime pickupTime;
 
     @Valid
-    @NotBlank
+    @NotNull
     private Long pickupGuardianId;
-
-    private boolean cancelled;
-
-    private String cancellationMotive;
 
 }
