@@ -1,5 +1,12 @@
--infrabel
--innetum - Consultance
--exellis - Consultance
--abakus - Consultance - { belgique - allemagne - luxembourg } - SIE societé intercommunale des eaux, spw, commission européenne - python odoo framework javascript
--smals
+-Infrabel
+-Innetum - Consultance
+-Exellis - Consultance
+-Abakus - Consultance - { belgique - allemagne - luxembourg } - SIE societé intercommunale des eaux, spw, commission européenne - python odoo framework javascript
+-Smals
+-Bureau 347
+-NewB
+-Rossel Interactive Media
+-Egov
+-Selor SPF Finances
+-EGov Select
+-Soprasteria
