@@ -3,11 +3,9 @@ package brussels.digitalcity.maxdolmans.demorest.models.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -19,28 +17,25 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "concerned_child")
-    private Child concernedChild;
+    @Column(nullable = false)
+    private LocalDate date;
 
-    @Column(name = "dropping_date")
-    private LocalDate droppingDate;
-
-    @Column(name = "dropping_time")
+    @Column(name = "dropping_time", nullable = false)
     private LocalTime droppingTime;
 
-    @ManyToOne
-    @JoinColumn(name = "dropping_guardian")
-    private Guardian droppingGuardian;
-
-    @Column(name = "pickup_date")
-    private LocalDate pickupDate;
-
-    @Column(name = "pickup_time")
+    @Column(name = "pickup_time", nullable = false)
     private LocalTime pickupTime;
 
     @ManyToOne
-    @JoinColumn(name = "pickup_guardian")
+    @JoinColumn(name = "concerned_child", nullable = false)
+    private Child concernedChild;
+
+    @ManyToOne
+    @JoinColumn(name = "dropping_guardian", nullable = false)
+    private Guardian droppingGuardian;
+
+    @ManyToOne
+    @JoinColumn(name = "pickup_guardian", nullable = false)
     private Guardian pickupGuardian;
 
     private boolean cancelled = false;

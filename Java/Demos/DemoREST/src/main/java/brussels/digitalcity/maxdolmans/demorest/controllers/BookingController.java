@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -47,5 +48,14 @@ public class BookingController {
     @GetMapping(path = "/remaining-of-month")
     public List<BookingDTO> getAllRemainingBookingsOfCurrentMonth() {
         return service.getAllRemainingBookingsOfCurrentMonth();
+    }
+
+    @GetMapping(value = "/check", params = {"date", "droppingTime, pickupTime"})
+    public boolean checkAvailable(
+            @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date,
+            @RequestParam @DateTimeFormat(pattern = "hh:mm")LocalTime droppingTime,
+            @RequestParam @DateTimeFormat(pattern = "hh:mm")LocalTime pickupTime
+            ) {
+        return service.isAvailable(date, droppingTime, pickupTime);
     }
 }

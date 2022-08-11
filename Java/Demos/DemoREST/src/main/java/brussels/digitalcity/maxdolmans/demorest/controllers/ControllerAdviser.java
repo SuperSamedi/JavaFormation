@@ -87,4 +87,19 @@ public class ControllerAdviser {
                                 .addInfo("error", ex.getMessage())
                 );
     }
+
+    @ExceptionHandler(UnavailableBookingException.class)
+    public ResponseEntity<ErrorDTO> handleException(UnavailableBookingException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ErrorDTO.builder()
+                                .message(ex.getMessage().toString())
+                                .receivedAt(LocalDateTime.now())
+                                .status(400)
+                                .method(HttpMethod.resolve(request.getMethod()))
+                                .path(request.getRequestURL().toString())
+                                .build()
+                                .addInfo("error", ex.getMessage())
+                );
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -62,10 +63,11 @@ public class DataInit implements InitializingBean {
 
     private final List <BookingForm> bookings = Arrays.asList(
             new BookingForm(
+                    LocalDate.of(2022, 8, 30),
+                    LocalTime.of(9, 15),
+                    LocalTime.of(15, 15),
                     1L,
-                    LocalDateTime.of(2022, 8, 30, 8, 15),
                     3L,
-                    LocalDateTime.of(2022, 8, 30, 17, 15),
                     3L
             )
     );

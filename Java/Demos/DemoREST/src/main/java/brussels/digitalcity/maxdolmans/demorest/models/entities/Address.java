@@ -23,7 +23,7 @@ public class Address {
     @Column(name = "building_number", nullable = false)
     private int buildingNumber;
 
-    @Column(name = "apartment_code", nullable = true)
+    @Column(name = "apartment_code")
     private String apartmentCode;
 
     @Column(name = "city_code", nullable = false)

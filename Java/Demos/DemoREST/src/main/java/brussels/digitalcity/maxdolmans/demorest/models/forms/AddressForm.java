@@ -6,10 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Embeddable;
 import javax.validation.constraints.*;
 
-@Embeddable
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,11 +22,10 @@ public class AddressForm {
 
     private String apartmentCode;
 
+//    @Min(1000)
+//    @Max(9999)
+//    @Pattern(regexp = "[0-9]{4}")
     @Positive
-    @NotBlank
-    @Pattern(regexp = "[0-9]{4}")
-    @Min(1000)
-    @Max(9999)
     private int cityCode;
 
     @NotBlank

@@ -1,8 +1,10 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
+import brussels.digitalcity.maxdolmans.demorest.models.dtos.BookingDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.ChildDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
+import brussels.digitalcity.maxdolmans.demorest.services.BookingService;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +17,11 @@ import java.util.Set;
 public class ChildController {
 
     private final ChildService service;
+    private final BookingService bookingService; 
 
-    public ChildController(ChildService service) {
+    public ChildController(ChildService service, BookingService bookingService) {
         this.service = service;
+        this.bookingService = bookingService;
     }
 
 
@@ -54,5 +58,10 @@ public class ChildController {
     @GetMapping(value = "/allergy")
     public List<ChildDTO> getAllWithAllergy(@RequestParam(required = true) String allergy) {
         return service.getAllWithAllergy(allergy);
+    }
+
+    @GetMapping(path = "/{id:[0-9]+}/bookings/future")
+    public List<BookingDTO> futureBookings(@PathVariable Long id) {
+        return bookingService.getAllFutureBookingsOfChild(id);
     }
 }

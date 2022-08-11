@@ -25,12 +25,11 @@ public class BookingMapper {
         BookingDTO dto = new BookingDTO();
 
         dto.setId( entity.getId() );
-        dto.setConcernedChild( childMapper.toDTO( entity.getConcernedChild() ) );
-        dto.setDroppingDate( entity.getDroppingDate() );
+        dto.setDate( entity.getDate() );
         dto.setDroppingTime( entity.getDroppingTime() );
-        dto.setDroppingGuardian( guardianMapper.toDTO( entity.getDroppingGuardian() ) );
-        dto.setPickupDate( entity.getPickupDate() );
         dto.setPickupTime( entity.getPickupTime() );
+        dto.setConcernedChild( childMapper.toDTO( entity.getConcernedChild() ) );
+        dto.setDroppingGuardian( guardianMapper.toDTO( entity.getDroppingGuardian() ) );
         dto.setPickupGuardian( guardianMapper.toDTO( entity.getPickupGuardian() ) );
         dto.setCancelled( entity.isCancelled() );
         dto.setCancellationMotive( entity.getCancellationMotive() );
@@ -45,9 +44,8 @@ public class BookingMapper {
 
         Booking booking = new Booking();
 
-        booking.setDroppingDate( form.getDroppingDate() );
+        booking.setDate( form.getDate() );
         booking.setDroppingTime( form.getDroppingTime() );
-        booking.setPickupDate( form.getPickupDate() );
         booking.setPickupTime( form.getPickupTime() );
 
         return booking;

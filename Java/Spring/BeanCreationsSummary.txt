@@ -1,0 +1,13 @@
+Recap creation de bean spring:
+- annotation:
+    - @Component
+    - @Service
+    - @Repository
+    - pour les controllers:
+        - @Controller
+        - @RestController
+    - pour la configuration:
+        - @Configuration
+
+- @Bean dans des classes @Configuration
+- Par configuration XML

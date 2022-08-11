@@ -8,15 +8,16 @@ import brussels.digitalcity.maxdolmans.demorest.models.entities.Child;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.Guardian;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildInsertForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.ChildUpdateForm;
+import brussels.digitalcity.maxdolmans.demorest.repositories.BookingRepository;
 import brussels.digitalcity.maxdolmans.demorest.repositories.ChildRepository;
 import brussels.digitalcity.maxdolmans.demorest.repositories.GuardianRepository;
 import brussels.digitalcity.maxdolmans.demorest.services.ChildService;
-import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,13 +26,13 @@ import java.util.Set;
 public class ChildServiceImpl implements ChildService {
 
     private final ChildRepository repository;
-    private final GuardianService guardianService;
+    private final BookingRepository bookingRepository;
     private final ChildMapper mapper;
     private final GuardianRepository guardianRepository;
 
-    public ChildServiceImpl(ChildRepository repository, GuardianService guardianService, ChildMapper mapper, GuardianRepository guardianRepository) {
+    public ChildServiceImpl(ChildRepository repository, BookingRepository bookingRepository, ChildMapper mapper, GuardianRepository guardianRepository) {
         this.repository = repository;
-        this.guardianService = guardianService;
+        this.bookingRepository = bookingRepository;
         this.mapper = mapper;
         this.guardianRepository = guardianRepository;
     }
@@ -135,6 +136,15 @@ public class ChildServiceImpl implements ChildService {
     @Override
     public List<ChildDTO> getAllWithAllergy(String allergy) {
         return repository.findByAllergiesContains(allergy).stream()
+                .map(mapper::toDTO)
+                .toList();
+    }
+
+    public List<ChildDTO> getAllPresentOnDay(LocalDate date) {
+        return bookingRepository.findBookingsByDate(date).stream()
+                .map(
+                        (b) -> repository.findById(b.getConcernedChild().getId())
+                                .orElseThrow( () -> new ElementNotFoundException(Child.class, b.getConcernedChild().getId())))
                 .map(mapper::toDTO)
                 .toList();
     }
