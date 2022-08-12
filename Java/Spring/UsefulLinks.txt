@@ -7,3 +7,9 @@ JPQL:
 
 Dates:
 	https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
+
+SpEL (Sping Expression Language):
+	https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/expressions.html
+	
+	specifique à la sécurité:
+	https://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html

@@ -1,15 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/nursery_db
+    url: jdbc:postgresql://localhost:5433/exo_jwt
     username: postgres
     password: 1234
     driver-class-name: org.postgresql.Driver
-#  security:
-#    user:
-#      name: user
-#      password: pass
-#      roles:
-#        - USER
   jpa:
     show-sql: true
     hibernate:
@@ -17,7 +11,6 @@ spring:
 
 application:
   jwt:
-    expires-at: 846_000
     header-prefix: "Bearer "
     secret: "8TnBtx7HDLtG0%6j#c4#Mam5Fsq9UkWxBkNy$L^ck#plJ8Ubhs"
     header-key: "Authorization"

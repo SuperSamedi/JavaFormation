@@ -1,14 +1,18 @@
 package brussels.digitalcity.maxdolmans.demorest.models.forms;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
-public class AppUserForm {
+@Getter @Setter
+@AllArgsConstructor
+public class AppUserLoginForm {
 
     @NotBlank
     private String username;
+
     @NotBlank
     private String password;
 
