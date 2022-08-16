@@ -1,5 +1,7 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.headers.Header;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,7 @@ public class SecurityDemoController {
 
 //    @PreAuthorize("isAuthenticated()")
     @GetMapping("/connected")
+    @Parameter(required = true) // Swagger
     public String connected() {
         return "ok";
     }
