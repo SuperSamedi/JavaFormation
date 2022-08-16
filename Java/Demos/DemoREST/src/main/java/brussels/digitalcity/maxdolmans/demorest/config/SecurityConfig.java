@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .antMatchers("/api/user/**").permitAll()
                 .antMatchers("/api/booking/check").permitAll()
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                .anyRequest().authenticated(); // All the remaining end-points
+                .anyRequest().permitAll(); // All the remaining end-points
 
         return http.build();
     }
