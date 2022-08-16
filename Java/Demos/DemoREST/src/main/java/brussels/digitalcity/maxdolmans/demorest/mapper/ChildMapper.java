@@ -71,7 +71,7 @@ public class ChildMapper {
         entity.setClean(form.isClean());
         entity.setAllergies(form.getAllergies().stream()
                 .map(String::trim)
-                .map( (s) -> s.replaceAll("\\s{2,}", ""))
+                .map( (s) -> s.replaceAll("\\s{2,}", " "))
                 .collect(Collectors.toList())
         );
 
