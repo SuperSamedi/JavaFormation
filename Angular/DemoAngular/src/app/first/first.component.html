@@ -1,0 +1,44 @@
+<h1>Angular Laboratory</h1>
+
+<div class="card" style="width: 25rem">
+  <img [src]="imagePath" class="card-img-top" alt="Paysage">
+  <div class="card-body">
+
+    <h5 class="card-title" [ngClass]="{'red': random % 2 === 0, 'blue': random %2 !== 0}">
+      {{cardData.title}}
+    </h5>
+
+    <p class="card-text" [ngStyle]="{'font-style': paragrapheFontStyle}">
+      {{cardData.description}}
+    </p>
+
+    <!--Double way binding-->
+    <input class="form-control" type="number" name="" id="" [(ngModel)]="random">
+
+    // *ngif s'affiche si vrai (ne reste pas dans la DOM)
+    <div class="alert alert-info" *ngIf="random % 2 === 0">
+      EVEN !
+    </div>
+    <div class="alert alert-warning" *ngIf="random % 2 !== 0">
+      ODD !
+    </div>
+
+    // [hidden] se cache si vrai (reste dans la DOM)
+    <div class="alert alert-info" [hidden]="random % 2 !== 0">
+      EVEN !
+    </div>
+    <div class="alert alert-warning" [hidden]="random % 2 === 0">
+      ODD !
+    </div>
+
+    <ul>
+      <li *ngFor="let i of numbers">Item {{i}}</li>
+    </ul>
+
+    // event binding
+    <a href="#" class="btn btn-primary" (click)="showAlert()">CLIQUE, BON DIEU !</a>
+
+  </div>
+</div>
+
+

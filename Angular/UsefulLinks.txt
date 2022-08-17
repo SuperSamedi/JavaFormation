@@ -1,0 +1,5 @@
+à poursuivre:
+	rxjs - reactive js multithreads
+
+Bibliothèque de dépendences npm:
+	npmjs.com

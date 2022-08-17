@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  width: 100%;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+  text-align: center;
+  margin: .5em 0;
+}
+
+h1 {
+  margin: 0 0 1rem 0;
+  background-color: black;
+  color: white;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  outline: 1px solid black;
+  padding: 1rem;
+}
+
+.card:hover {
+  transform: scale(105%);
+  transition-duration: 0.1s;
+}

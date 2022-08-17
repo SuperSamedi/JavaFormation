@@ -1,0 +1,6 @@
+app-first{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

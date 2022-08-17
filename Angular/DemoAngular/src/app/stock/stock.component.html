@@ -1,0 +1,24 @@
+<header>
+  <img src="https://is4-ssl.mzstatic.com/image/thumb/Features113/v4/34/19/85/34198580-11ed-e172-8d43-1eb4ca2dc44e/source/4320x1080sr.png" alt="Krusty Krab Banner">
+</header>
+
+<h1>Krusty Krab</h1>
+<h2>Welcome!</h2>
+
+<ul id="stock">
+  <li *ngFor="let product of stock">
+    <div>
+      <img src="{{product.image}}" alt="Prodcut image">
+      <h5>{{product.name}}</h5>
+      <div class="product-info">
+        <p>
+          {{product.description}}<br>
+          {{product.price}}€<br>
+          <span [ngClass]="{ 'red': product.quantity <= 0 }">Stock : {{product.quantity}}</span>
+        </p>
+        <input *ngIf="product.quantity > 0" type="button" value="Buy" (click)="buy(product.id -1)">
+        <input *ngIf="product.quantity <= 0" type="button" class="btn-unavailable" value="Unavailable">
+      </div>
+    </div>
+  </li>
+</ul>

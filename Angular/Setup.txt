@@ -1,0 +1,10 @@
+-DL Node.js (on veut pouvoir utiliser NPM qui fait partie de node.js)
+-in terminal:
+	-verifier l'install avec : node --version
+	-installer Angular avec : npm install -g @angular/cli
+-relancer Intellij et faire nouveau projet en sélectionnant le Angular/CLI generator.
+
+Pour installer bootstrap:
+	-dans le terminal au niveau du projet : ng add @ng-bootstrap/ng-bootstrap
+		› si ça ne marche pas:
+			-ouvrir un powershell en admin: Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned (oui à tout)
