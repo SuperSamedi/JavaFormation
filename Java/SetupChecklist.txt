@@ -10,8 +10,9 @@ Intellij:
 	Dependencies: ( depdendencies versions must be compatible with the Intellij version -> see library's doc )
 		Lombok
 		Spring Web
-		Spring Session
-		Thymeleaf or other template engine
+		(Spring Session)
+		Spring Data JPA
+		(Thymeleaf or other template engine)
 		Spring Security
 		MySQL Drivers or PostgreSQL (or H2 during devloppment)
 		Validation
@@ -20,3 +21,25 @@ Intellij:
 		Spring configuration processor
 	application.yml configuration
 		datasource
+
+Docker-Postgres-Pgadmin:
+	- Vérifier : 
+		- Check dans "Turn windows features on or off"
+			- V-haust est activé
+			- Virtual machine platform est activé
+		- virtualization is enabled (check dans task manager/performance + activer dans le BIOS si nécessaire)
+	- Terminal: wsl --install -d Ubuntu
+	- Choose Ubuntu credentials in the termianl that pops up
+	- Run the Docker desktop installer
+	- Terminal: docker pull postgres
+	- Terminal: docker pull dpage/pgadmin4
+	- Terminal: docker run --name postgres-container -e POSTGRES_USER=user -e POSTGRES_PASSWORD=1234 -p 5432:5432 -v /data:/var/lib/postgresql/data -d postgres
+	- Terminal: docker run --name pgadmin-container -p 82:80 -e PGADMIN_DEFAULT_EMAIL=contact.max.dolmans@gmail.com -e PGADMIN_DEFAULT_PASSWORD=1234 -d dpage/pgadmin4
+	- Go to http://localhost:82
+	- Enter PgAdmin credentials
+	- Click on 'Add new Servers' to connect the postgres server running on docker
+	- Choose a name for the server connection
+	- In the Connexion tab, enter your local ip address (ie: 127.168.1.11)
+	- Create new db in the server
+	- Link the db in and the postgres server port in the application.yml file in Intellij
+	- Don't forget to create the entry point application class
