@@ -7,6 +7,9 @@ https://dzone.com/articles/create-and-publish-your-rest-api-using-spring-boot
 Atractive CV photo maker
 pfpmaker.com
 
+Cheat sheet JS
+https://quickref.me/javascript
+
 
 Ç majuscule : Alt+128
 Espace insécable : Alt+255

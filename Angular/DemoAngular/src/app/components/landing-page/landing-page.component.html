@@ -1,0 +1,22 @@
+<h1>ANGULAAAAAAAAR</h1>
+<nav>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/demo">Demo</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/krusty-krab">Krusty Krab</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/contact">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<h2>Choississez un nombre pour voir s'il est pair ou impair</h2>
+<input type="number" [(ngModel)]="toVerify">
+<button (click)="verifyParity()">Verifier</button>
+<p *ngIf="invalidNumber">Le nombre entré est invalid.</p>

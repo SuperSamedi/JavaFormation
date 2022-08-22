@@ -1,0 +1,73 @@
+<header>
+  <img
+    src="https://is4-ssl.mzstatic.com/image/thumb/Features113/v4/34/19/85/34198580-11ed-e172-8d43-1eb4ca2dc44e/source/4320x1080sr.png"
+    alt="Krusty Krab Banner">
+</header>
+
+<h1>Krusty Krab</h1>
+
+<nav>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/demo">Demo</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/krusty-krab">Krusty Krab</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/contact">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<h2>Welcome!</h2>
+
+<div id="content">
+  <div id="side">
+    <div id="filter-options">
+      <legend>Filters</legend>
+      <div id="filters">
+        <fieldset class="option">
+          <input type="checkbox" id="filter-available" [(ngModel)]="showOnlyAvailable">
+          <label for="filter-available">Hide unavailable products</label>
+        </fieldset>
+        <fieldset class="option" id="price-range">
+          <label>Price range</label>
+          <div class="range">
+            <span>1</span>
+            <input class="range" type="range" min="1" [max]="maxPriceInStock" [(ngModel)]="priceRangeValue" step="0.01">
+            <span>{{priceRangeValue}}</span>
+          </div>
+  <!--        <input class="in-price" type="number" id="min-price" [(ngModel)]="minPriceFilter">-->
+  <!--        <input class="in-price" type="number" id="max-price" [(ngModel)]="maxPriceFilter">-->
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <div id="main">
+    <ul id="stock">
+<!--      <li *ngFor="let product of stock | price: minPriceFilter: (maxPriceFilter==0?undefined:maxPriceFilter) | available: showOnlyAvailable">-->
+      <li *ngFor="let product of stock | price: minPriceFilter: priceRangeValue | available: showOnlyAvailable">
+        <a (click)="onProductClicked(product.id)">
+          <img src="{{product.image}}" alt="Prodcut image">
+          <h5>{{product.name}}</h5>
+          <div class="product-info">
+            <p>
+              {{product.description}}<br>
+              <!--          Pipes-->
+              {{ product.price | currency: 'EUR': 'code' | lowercase }}<br>
+              <span [ngClass]="{ 'red': product.quantity <= 0 }">Stock : {{product.quantity}}</span>
+            </p>
+            <input *ngIf="product.quantity > 0" type="button" value="Buy" (click)="buy(product.id -1)">
+            <input *ngIf="product.quantity <= 0" type="button" class="btn-unavailable" value="Unavailable">
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+

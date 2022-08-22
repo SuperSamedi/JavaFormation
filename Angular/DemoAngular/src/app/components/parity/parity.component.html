@@ -1,0 +1,20 @@
+<nav>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/demo">Demo</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/krusty-krab">Krusty Krab</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/contact">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<p>
+  le nombre {{ nbr }} est {{ nbr % 2 == 0 ? 'pair' : 'impair' }}
+</p>

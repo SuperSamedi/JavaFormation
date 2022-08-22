@@ -1,0 +1,14 @@
+
+.red {
+  color: #af4c4c;
+}
+
+.blue {
+  color: cadetblue;
+}
+
+.card:hover {
+  /*transform: scale(105%);*/
+  box-shadow: 5px 5px 5px gray, -5px -5px 5px gray, 5px -5px 5px gray, -5px 5px 5px gray;
+  transition-duration: 0.1s;
+}

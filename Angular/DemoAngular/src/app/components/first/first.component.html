@@ -1,14 +1,31 @@
 <h1>Angular Laboratory</h1>
 
+<nav>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/demo">Demo</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/krusty-krab">Krusty Krab</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/contact">Contact</a>
+    </li>
+  </ul>
+</nav>
+
 <div class="card" style="width: 25rem">
   <img [src]="imagePath" class="card-img-top" alt="Paysage">
   <div class="card-body">
 
     <h5 class="card-title" [ngClass]="{'red': random % 2 === 0, 'blue': random %2 !== 0}">
-      {{cardData.title}}
+      {{cardData.title | uppercase}} : {{currentDate | date:'dd/MM/yyyy'}}
     </h5>
 
-    <p class="card-text" [ngStyle]="{'font-style': paragrapheFontStyle}">
+    <p class="card-text" [ngStyle]="{'font-style': paragraphFontStyle}">
       {{cardData.description}}
     </p>
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "./product";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-stock',
@@ -7,6 +8,10 @@ import {Product} from "./product";
   styleUrls: ['./stock.component.css']
 })
 export class StockComponent implements OnInit {
+
+  showOnlyAvailable: boolean = false;
+  minPriceFilter?: number;
+  maxPriceFilter?: number;
 
   stock: Product[] = [
     {
@@ -30,7 +35,7 @@ export class StockComponent implements OnInit {
       name: "Kelp Fries",
       description: "Next level Krustiness.",
       image: "http://en.spongepedia.org/images/c/c1/130a_Kelp_Fries.jpg",
-      price: 1.89,
+      price: 2,
       quantity: 3
     },
     {
@@ -60,7 +65,7 @@ export class StockComponent implements OnInit {
   ]
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -68,5 +73,15 @@ export class StockComponent implements OnInit {
 
   buy(id: number) {
     this.stock[id].quantity--;
+  }
+
+  get maxPriceInStock(): number {
+    return Math.max.apply( Math, this.stock.map( product => product.price ) );
+  }
+
+  priceRangeValue: number = this.maxPriceInStock;
+
+  onProductClicked(id: number) {
+    this.router.navigate(['product', id])
   }
 }

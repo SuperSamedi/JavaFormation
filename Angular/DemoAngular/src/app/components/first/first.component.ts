@@ -12,8 +12,9 @@ export class FirstComponent implements OnInit {
   private _imagePath: string = "https://picsum.photos/id/" + this.getRandomInt(1, 1000) + "/" + this._imageWidth + "/" + this._imageHeight;
   private _random: number = this.getRandomInt(1, 1000);
   private _fontStyles = ['normal', 'italic'];
-  paragrapheFontStyle: any;
+  paragraphFontStyle: any;
   numbers = [0, 1, 2.5, 3, 5.2, 8, 9.123]
+  currentDate: Date = new Date();
 
   cardData: {
     title: string,
@@ -31,7 +32,7 @@ export class FirstComponent implements OnInit {
 
 
   get random(): number {
-    this.paragrapheFontStyle = this._fontStyles[this.getRandomInt(0, 1)]
+    this.paragraphFontStyle = this._fontStyles[this.getRandomInt(0, 1)]
     return this._random;
   }
 

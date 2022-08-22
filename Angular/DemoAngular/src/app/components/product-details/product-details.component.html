@@ -1,0 +1,29 @@
+<h1>Krusty Krab</h1>
+
+<nav>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/demo">Demo</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/krusty-krab">Krusty Krab</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/contact">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<h2>{{product.name}}</h2>
+
+<div id="product-detail">
+  <img src="{{product.image}}" alt="Product Image">
+  <p>
+    {{product.description}}<br>
+    {{product.price}}<br>
+    {{product.quantity}}
+  </p>
+</div>
