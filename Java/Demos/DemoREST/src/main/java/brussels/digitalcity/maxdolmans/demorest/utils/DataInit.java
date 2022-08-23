@@ -30,14 +30,14 @@ public class DataInit implements InitializingBean {
 
     private final List<ChildInsertForm> children = List.of(
             new ChildInsertForm(
-                    "Max",
-                    "Dolmans",
+                    "Frodo",
+                    "Baggins",
                     LocalDate.of(1991, 6, 20),
                     true
             ),
             new ChildInsertForm(
-                    "Nora",
-                    "Dolmans",
+                    "Aragorn",
+                    "Of Isildur",
                     LocalDate.of(1993, 2, 14),
                     true
             )
@@ -45,17 +45,24 @@ public class DataInit implements InitializingBean {
 
     private final List<GuardianForm> guardians = List.of(
             new GuardianForm(
-                    "Christine",
-                    "Herinckx",
-                    "063424786",
-                    new AddressForm("Rue Abraham Gilson",1, 6723, "Habay-la-Vieille")
+                    "Bilbo",
+                    "Baggins",
+                    "063/42.47.86",
+                    new AddressForm("Shire lane",1, 1000, "Hobbitbourg")
             ),
 
             new GuardianForm(
-                    "Michel",
-                    "Dolmans",
-                    "063424786",
-                    new AddressForm("Rue Abraham Gilson",1, 6723, "Habay-la-Vieille")
+                    "Arwen",
+                    "Evenstar",
+                    "0498/65.61.49",
+                    new AddressForm("High-tree Road",11, 9999, "Lothlòrien")
+            ),
+
+            new GuardianForm(
+                    "Gimli",
+                            "Lockbearer",
+                            "02/655.61.49",
+                            new AddressForm("Sword sheatheth street",51, 6699, "Helm's Deep")
             )
     );
 

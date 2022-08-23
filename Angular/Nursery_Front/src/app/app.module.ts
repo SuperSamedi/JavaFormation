@@ -3,13 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { GuardianAllComponent } from './pages/guardian/components/guardian-all/guardian-all.component';
 import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    GuardianAllComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
