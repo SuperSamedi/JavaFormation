@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 * {
   margin: 0;
+  padding: 0;
 }
 
 body {
@@ -21,13 +22,11 @@ nav {
   height: 3rem;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
 }
 
 nav > ul {
   display: flex;
   align-items: center;
-  gap: 2rem;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -41,6 +40,7 @@ nav > ul > li > a {
   height: 100%;
   display: flex;
   align-items: center;
+  padding: 1em;
 }
 
 nav > ul > li > a:hover {

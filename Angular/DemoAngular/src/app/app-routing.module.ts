@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'demo', component: FirstComponent },
   { path: 'parity/:nbr', component: ParityComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'product/:nbr', component: ProductDetailsComponent }
+  { path: 'product/:nbr', component: ProductDetailsComponent },
+  { path: 'products', loadChildren: () => import("./pages/product/product.module").then(m => m.ProductModule) }
 ];
 
 @NgModule({

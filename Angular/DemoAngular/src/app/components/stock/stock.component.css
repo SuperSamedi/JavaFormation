@@ -80,5 +80,9 @@ header > img {
 }
 
 .range {
-  width: 150px;
+  width: 160px;
+}
+
+[type="checkbox"] {
+  margin-right: 0.5rem;
 }

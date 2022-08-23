@@ -33,6 +33,7 @@ public class SecurityConfig {
 
         // Cross Site Request Forgery Block si Spring détecte une requête falcifiée. Disabled ici car Spring interprète les requêtes Postman en tant que tel
         http.csrf().disable();
+//        http.cors().disable();
 
         // Vérifie le token
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);

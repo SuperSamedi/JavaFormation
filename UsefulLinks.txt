@@ -1,3 +1,12 @@
+
+Ç majuscule : Alt+128
+  Espace insécable : Alt+255
+· Point médian: Alt+0183
+– EM Dash: Alt+0150
+É Majuscule: Alt+0201
+
+
+
 HTTP responses status codes
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
@@ -10,9 +19,5 @@ pfpmaker.com
 Cheat sheet JS
 https://quickref.me/javascript
 
-
-Ç majuscule : Alt+128
-Espace insécable : Alt+255
-Point médian: Alt+0183
-EM Dash: Alt+0150
-é Majuscule: Alt+0201
+Flavian Ovyn sur Gitlab
+https://gitlab.com/users/fovyn/projects

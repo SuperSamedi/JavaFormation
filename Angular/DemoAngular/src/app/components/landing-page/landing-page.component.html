@@ -13,10 +13,17 @@
     <li routerLinkActive="active">
       <a routerLink="/contact">Contact</a>
     </li>
+    <li routerLinkActive="active">
+      <a routerLink="/products">Products</a>
+    </li>
   </ul>
 </nav>
 
 <h2>Choississez un nombre pour voir s'il est pair ou impair</h2>
-<input type="number" [(ngModel)]="toVerify">
-<button (click)="verifyParity()">Verifier</button>
+
+<div id="inputs">
+  <input type="number" [(ngModel)]="toVerify">
+  <button (click)="verifyParity()">Verifier</button>
+</div>
+
 <p *ngIf="invalidNumber">Le nombre entré est invalid.</p>

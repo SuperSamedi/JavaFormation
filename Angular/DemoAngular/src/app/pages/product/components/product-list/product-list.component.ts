@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from "../stock/product";
-import { ActivatedRoute } from "@angular/router";
+import {Product} from "../../../../components/stock/product";
 
 @Component({
-  selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
-
-  id: number;
-  product: Product;
+export class ProductListComponent implements OnInit {
 
   stock: Product[] = [
     {
@@ -63,12 +59,19 @@ export class ProductDetailsComponent implements OnInit {
     // }
   ]
 
-  constructor(private route: ActivatedRoute) {
-    this.id = route.snapshot.params['nbr'];
-    this.product = this.stock[this.id - 1];
-  }
+  get Stock(): any[] {return [...this.stock]}
+
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
+  openDetails(productId: number) {
+
+  }
+
+  buyProduct(productId: number) {
+
+  }
 }

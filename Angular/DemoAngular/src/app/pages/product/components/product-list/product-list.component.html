@@ -1,0 +1,42 @@
+<h1>Products</h1>
+
+<nav>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/demo">Demo</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/krusty-krab">Krusty Krab</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/contact">Contact</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/products">Products</a>
+    </li>
+  </ul>
+</nav>
+
+<table id="products-table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of Stock; let i = index" (click)="openDetails(product.id)">
+    <td>{{ product.name }}</td>
+<!--    <td><img [src]="product.image" [alt]="product.name"></td>-->
+    <td>{{ product.price }}</td>
+    <td>
+      <button [routerLink]="[product.id]">Details</button>
+      <button (click)="buyProduct(product.id)">Buy</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

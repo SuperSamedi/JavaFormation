@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/user")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AppUserController {
 
     private final CustomUserDetailsServiceImpl service;

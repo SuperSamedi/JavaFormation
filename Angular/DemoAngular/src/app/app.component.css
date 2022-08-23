@@ -4,6 +4,12 @@ app-first{
   align-items: center;
 }
 
+app-product {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .content {
   width: 100%;
 }
