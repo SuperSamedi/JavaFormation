@@ -1,5 +1,6 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
+import brussels.digitalcity.maxdolmans.demorest.models.dtos.TokenDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AppUserCreateForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AppUserLoginForm;
 import brussels.digitalcity.maxdolmans.demorest.services.impl.CustomUserDetailsServiceImpl;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/api/user")
+@RequestMapping(path = "/api/account")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AppUserController {
 
@@ -33,9 +34,11 @@ public class AppUserController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @RequestBody AppUserLoginForm form) {
+    public TokenDTO login(@Valid @RequestBody AppUserLoginForm form) {
         Authentication auth = authManager.authenticate( new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword()) );
-        return jwtProvider.createToken(auth);
+        TokenDTO token = new TokenDTO();
+        token.setValue( jwtProvider.createToken(auth) );
+        return token;
     }
 
 }

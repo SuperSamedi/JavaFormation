@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         jsr250Enabled = true // access à @RolesAllowed
 ) // Permet d'apposer des annotations sur chaque requete dans les controllers - bugged?
 public class SecurityConfig {
-    // Exist aussi une ancienn methode depreciated implemtation de WebServiceConfigurerAdapter
+    // Exist aussi une ancienne methode depreciated implementation de WebServiceConfigurerAdapter
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter authFilter) throws Exception {
@@ -60,10 +60,11 @@ public class SecurityConfig {
                 // ** = joker for 0-N sub-paths
                 // {pathvar:regex} = regex pattern for a sub-path
 
-                .antMatchers("/api/user/**").permitAll()
-                .antMatchers("/api/booking/check").permitAll()
-                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+//                .antMatchers("/api/user/**").permitAll()
+//                .antMatchers("/api/booking/check").permitAll()
+//                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                 .anyRequest().permitAll(); // All the remaining end-points
+//                .and().headers().frameOptions().disable();
 
         return http.build();
     }

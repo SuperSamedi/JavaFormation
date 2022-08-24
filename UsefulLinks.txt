@@ -21,3 +21,6 @@ https://quickref.me/javascript
 
 Flavian Ovyn sur Gitlab
 https://gitlab.com/users/fovyn/projects
+
+Design patterns
+dofactory.net

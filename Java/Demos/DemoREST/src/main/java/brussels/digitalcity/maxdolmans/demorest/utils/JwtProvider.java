@@ -1,5 +1,6 @@
 package brussels.digitalcity.maxdolmans.demorest.utils;
 
+import brussels.digitalcity.maxdolmans.demorest.models.dtos.TokenDTO;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
@@ -37,7 +38,6 @@ public class JwtProvider {
 
 
     public String createToken(Authentication auth) {
-
         return JWT.create()
                 // Déclarer les claims du payload
                 .withExpiresAt(Instant.now().plusSeconds(properties.getExpiresAt()))

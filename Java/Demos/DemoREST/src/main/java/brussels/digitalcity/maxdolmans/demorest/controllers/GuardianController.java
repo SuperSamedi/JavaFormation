@@ -4,6 +4,7 @@ import brussels.digitalcity.maxdolmans.demorest.models.dtos.GuardianDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AddressForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.GuardianForm;
 import brussels.digitalcity.maxdolmans.demorest.services.GuardianService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/guardian")
+@Secured(value = "ROLE_PERSONNEL")
 @CrossOrigin(origins = "http://localhost:4200")
 public class GuardianController {
 
