@@ -1,0 +1,8 @@
+#guardian-container {
+  display: flex;
+}
+
+#guardian-details {
+  width: 300px;
+  padding: 2rem;
+}

@@ -1,0 +1,14 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-input">
+    <label for="in-username">Username: </label>
+    <input type="text" name="username" id="in-username" formControlName="username">
+  </div>
+  <div class="form-input">
+    <label for="in-password">Password : </label>
+    <input type="password" name="username" id="in-password" formControlName="password">
+    <div *ngIf="registerForm.get('password')?.errors">
+      {{ registerForm.get('password')?.errors | json }}
+    </div>
+  </div>
+  <button type="submit" *ngIf="registerForm.valid">Sign up</button>
+</form>

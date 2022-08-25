@@ -1,0 +1,11 @@
+.id-number {
+  color: gray;
+}
+
+td, th {
+  padding: 0 1rem;
+}
+
+tbody > tr:hover {
+  background-color: silver;
+}
