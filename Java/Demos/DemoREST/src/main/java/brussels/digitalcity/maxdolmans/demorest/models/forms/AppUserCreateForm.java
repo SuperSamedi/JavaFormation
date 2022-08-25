@@ -12,6 +12,7 @@ public class AppUserCreateForm {
 
     @NotBlank
     private String username;
+
     @NotBlank
     private String password;
 

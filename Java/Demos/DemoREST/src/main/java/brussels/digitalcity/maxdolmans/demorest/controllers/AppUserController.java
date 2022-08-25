@@ -1,5 +1,6 @@
 package brussels.digitalcity.maxdolmans.demorest.controllers;
 
+import brussels.digitalcity.maxdolmans.demorest.models.dtos.AccountDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.dtos.TokenDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AppUserCreateForm;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AppUserLoginForm;
@@ -11,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping(path = "/api/account")
@@ -39,6 +41,11 @@ public class AppUserController {
         TokenDTO token = new TokenDTO();
         token.setValue( jwtProvider.createToken(auth) );
         return token;
+    }
+
+    @GetMapping("/{id:[0-9]+}")
+    public AccountDTO getOne(@NotNull @PathVariable Long id) {
+        return service.getOne(id);
     }
 
 }

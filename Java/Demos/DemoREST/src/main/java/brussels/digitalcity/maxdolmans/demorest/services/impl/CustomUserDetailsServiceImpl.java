@@ -1,6 +1,8 @@
 package brussels.digitalcity.maxdolmans.demorest.services.impl;
 
+import brussels.digitalcity.maxdolmans.demorest.exceptions.ElementNotFoundException;
 import brussels.digitalcity.maxdolmans.demorest.mapper.AppUserMapper;
+import brussels.digitalcity.maxdolmans.demorest.models.dtos.AccountDTO;
 import brussels.digitalcity.maxdolmans.demorest.models.entities.AppUser;
 import brussels.digitalcity.maxdolmans.demorest.models.forms.AppUserCreateForm;
 import brussels.digitalcity.maxdolmans.demorest.repositories.AppUserRepository;
@@ -41,5 +43,12 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService, AppUser
         user.setRoles(List.of("PERSONNEL"));
         user.setPassword(encoder.encode(user.getPassword()));
         repository.save(user);
+    }
+
+    @Override
+    public AccountDTO getOne(Long id) {
+        return repository.findById(id)
+                .map(mapper::toDTO)
+                .orElseThrow(() -> new ElementNotFoundException(AppUser.class, id));
     }
 }
