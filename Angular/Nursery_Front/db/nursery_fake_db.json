@@ -1,8 +1,0 @@
-{
-  "users": [
-    { "id":  1, "username":  "", "password": "" }
-  ],
-  "guardians": [
-    { "id":  1, "firstName":  "", "lastName": "" }
-  ]
-}
