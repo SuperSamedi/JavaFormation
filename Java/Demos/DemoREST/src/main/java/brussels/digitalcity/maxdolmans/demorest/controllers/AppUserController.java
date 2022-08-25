@@ -28,12 +28,12 @@ public class AppUserController {
     }
 
 
-    @PostMapping("/register")
+    @PostMapping("/sign-up")
     public void createUser(@Valid @RequestBody AppUserCreateForm form) {
         service.create(form);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/sign-in")
     public TokenDTO login(@Valid @RequestBody AppUserLoginForm form) {
         Authentication auth = authManager.authenticate( new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword()) );
         TokenDTO token = new TokenDTO();

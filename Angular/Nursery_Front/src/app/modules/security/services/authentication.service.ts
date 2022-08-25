@@ -12,6 +12,6 @@ export class AuthenticationService {
 
   loginCall(username: string, password: string): Observable<any> {
     // const params = new HttpParams({fromObject: {username, password}});
-    return this._http.post(environment.api.url + "/account/login", {username: username, password: password});
+    return this._http.post(environment.api.url + "/account/sign-in", {username: username, password: password});
   }
 }
