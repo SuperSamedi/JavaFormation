@@ -3,6 +3,7 @@
 	-verifier l'install avec : node --version
 	-installer Angular avec : npm install -g @angular/cli
 -relancer Intellij et faire nouveau projet en sélectionnant le Angular/CLI generator.
+- installer jwt-decoder : dans le dossier du projet, run un terminal: npm install jwt-decode
 
 Pour installer bootstrap:
 	-dans le terminal au niveau du projet : ng add @ng-bootstrap/ng-bootstrap
