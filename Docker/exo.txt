@@ -1,0 +1,1 @@
+docker run --name mysql-exo -e MYSQL_ROOT_PASSWORD=123 MYSQL_USER=user MYSQL_PASSWORD=pass -d mysql:tag

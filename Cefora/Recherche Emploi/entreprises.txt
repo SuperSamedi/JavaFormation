@@ -10,3 +10,4 @@
 -Selor SPF Finances
 -EGov Select
 -Soprasteria
+-talents.wallonie.be

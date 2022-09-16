@@ -27,3 +27,6 @@ dofactory.net
 
 Ionic framework to transform web app to android app
 https://ionicframework.com/
+
+sHs computers
+https://www.shscomputer.be
