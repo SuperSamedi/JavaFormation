@@ -1,0 +1,19 @@
+- Download the zip folder
+	https://maven.apache.org/install.html
+- Unzip
+- Placer à la racine de C:
+- Modifier les variable d'environnement
+	-Varibale système: 	
+		name: MAVEN_HOME
+		value: C:\...
+	-Path variable: %MAVEN_HOME%\bin
+
+install guide:
+	https://phoenixnap.com/kb/install-maven-windows
+
+Complete pom.xml possible mark down info:
+	https://maven.apache.org/ref/3.8.2/maven-model/maven.html#class_dependency
+Maven built-in proprities:
+	https://github.com/cko/predefined_maven_properties/blob/master/README.md
+Maven Lifecylce:
+	https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
