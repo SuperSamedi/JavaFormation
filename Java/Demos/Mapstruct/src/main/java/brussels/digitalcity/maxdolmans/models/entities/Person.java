@@ -7,6 +7,7 @@ import java.util.Objects;
 
 /**
  * Classe mutable représentant un membre de la société.
+ * <p>
  * FA = { id, firstName, lastName, dateOfBirth }
  * @attribute id Long
  * @attribute firstName String
