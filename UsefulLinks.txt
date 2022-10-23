@@ -30,3 +30,8 @@ https://ionicframework.com/
 
 sHs computers
 https://www.shscomputer.be
+
+Micro-Service
+https://microservices.io/patterns/index.html
+https://docs.spring.io/spring-cloud-config/docs/current/reference/html/
+https://spring.io/blog/2015/07/14/microservices-with-spring
