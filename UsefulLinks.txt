@@ -1,4 +1,3 @@
-
 Ç majuscule : Alt+128
   Espace insécable : Alt+255
 · Point médian: Alt+0183
